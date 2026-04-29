@@ -12,7 +12,6 @@ const htmlRoutes = new Set([
   "privacy-policy",
   "projects",
   "service-details",
-  "services",
   "team",
   "terms",
 ]);
@@ -29,5 +28,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/blog", "/blog-details", "/career", "/contact", "/faq", "/job-details", "/pricing-comparison", "/privacy-policy", "/projects", "/service-details", "/services", "/team", "/terms"],
+  matcher: ["/blog", "/blog-details", "/career", "/contact", "/faq", "/job-details", "/pricing-comparison", "/privacy-policy", "/projects", "/service-details", "/team", "/terms"],
 };

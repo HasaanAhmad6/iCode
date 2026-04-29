@@ -8,19 +8,18 @@ import {
   BadgeCheck,
   ChevronLeft,
   ChevronRight,
-  Headset,
   Lightbulb,
   Lock,
   Minus,
   Plus,
   Rocket,
   ShieldCheck,
-  TrendingUp,
 } from "lucide-react";
 import { ContactModal } from "@/components/ContactModal";
 import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { WhyChooseUs } from "@/components/WhyChooseUs";
 import {
   AboutValueIcon,
   aboutJourneys,
@@ -40,6 +39,34 @@ export default function AboutUsPage() {
   const [activeTeam, setActiveTeam] = useState(0);
   const [testimonialsSwiper, setTestimonialsSwiper] = useState<SwiperType | null>(null);
   const [teamSwiper, setTeamSwiper] = useState<SwiperType | null>(null);
+  const aboutWhyChooseItems = [
+    {
+      title: "Proven Expertise",
+      description: "Over a decade of experience delivering high-performance digital solutions.",
+      icon: "badge-check" as const,
+    },
+    {
+      title: "Fast Delivery",
+      description: "Streamlined processes to launch your projects on time, every time.",
+      icon: "rocket" as const,
+      wrapperClassName:
+        "before:bg-gray-light relative before:absolute before:top-0 before:-left-6 before:hidden before:h-full before:w-px lg:pt-14 lg:before:block",
+    },
+    {
+      title: "Scalable Approach",
+      description: "Solutions designed to grow with your team, customers, and goals.",
+      icon: "trending-up" as const,
+      wrapperClassName:
+        "before:bg-gray-light relative before:absolute before:top-0 before:-left-6 before:hidden before:h-full before:w-px lg:pt-6 lg:before:block",
+    },
+    {
+      title: "Dedicated Support",
+      description: "Get reliable support from onboarding to long-term growth.",
+      icon: "headset" as const,
+      wrapperClassName:
+        "before:bg-gray-light relative before:absolute before:top-0 before:-left-6 before:hidden before:h-full before:w-px lg:pt-14 lg:before:block",
+    },
+  ];
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1500);
@@ -48,9 +75,6 @@ export default function AboutUsPage() {
 
   return (
     <>
-      <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
-      <link rel="stylesheet" href="/assets/css/style.css" />
-
       <div className="relative">
         {isLoading && (
           <div id="preloader" className="fixed inset-0 z-60 flex h-dvh w-full items-center justify-center bg-white">
@@ -265,23 +289,7 @@ export default function AboutUsPage() {
           </div>
         </div>
 
-        <div className="py-14 lg:py-16">
-          <div className="container">
-            <div className="section-heading border-gray-light flex flex-col items-center pb-4 text-center! sm:text-left lg:border-b xl:flex-row xl:justify-between xl:gap-5 xl:text-left">
-              <h2>Why businesses choose us</h2>
-              <p className="text-center sm:max-w-125 xl:mt-0! xl:text-left">
-                We help companies streamline operations, elevate brand presence, and grow faster
-                with trusted technology and design.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-12 pt-6 sm:grid-cols-2 lg:grid-cols-4 xl:pt-12">
-              <div className="group space-y-3"><div className="border-primary/20 bg-primary/5 group-hover:bg-primary text-primary grid size-10 place-content-center rounded-lg border transition group-hover:text-white"><BadgeCheck className="size-6" /></div><h3>Proven Expertise</h3><p>Over a decade of experience delivering high-performance digital solutions.</p></div>
-              <div className="group before:bg-gray-light relative space-y-3 before:absolute before:top-0 before:-left-6 before:hidden before:h-full before:w-px lg:pt-14 lg:before:block"><div className="border-primary/20 bg-primary/5 group-hover:bg-primary text-primary grid size-10 place-content-center rounded-lg border transition group-hover:text-white"><Rocket className="size-6" /></div><h3>Fast Delivery</h3><p>Streamlined processes to launch your projects on time, every time.</p></div>
-              <div className="group before:bg-gray-light relative space-y-3 before:absolute before:top-0 before:-left-6 before:hidden before:h-full before:w-px lg:pt-6 lg:before:block"><div className="border-primary/20 bg-primary/5 group-hover:bg-primary text-primary grid size-10 place-content-center rounded-lg border transition group-hover:text-white"><TrendingUp className="size-6" /></div><h3>Scalable Approach</h3><p>Solutions designed to grow with your team, customers, and goals.</p></div>
-              <div className="group before:bg-gray-light relative space-y-3 before:absolute before:top-0 before:-left-6 before:hidden before:h-full before:w-px lg:pt-14 lg:before:block"><div className="border-primary/20 bg-primary/5 group-hover:bg-primary text-primary grid size-10 place-content-center rounded-lg border transition group-hover:text-white"><Headset className="size-6" /></div><h3>Dedicated Support</h3><p>Get reliable support from onboarding to long-term growth.</p></div>
-            </div>
-          </div>
-        </div>
+        <WhyChooseUs titleClassName="text-center!" items={aboutWhyChooseItems} />
 
         <div className="bg-background border-gray-light relative overflow-hidden border-y-2 py-14 lg:py-16">
           <img src="/assets/images/quote.png" alt="Quote" width={160} height={160} className="absolute top-0 left-0 w-40" />
