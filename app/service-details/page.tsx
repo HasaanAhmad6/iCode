@@ -9,14 +9,13 @@ import {
   ChevronRight,
   Layers,
   LayoutPanelLeft,
-  Minus,
   MonitorSmartphone,
   PenTool,
-  Plus,
   UserSearch,
   Workflow,
 } from "lucide-react";
 import { ContactModal } from "@/components/ContactModal";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { PricingPlans } from "@/components/PricingPlans";
@@ -34,7 +33,6 @@ import "swiper/css";
 export default function ServiceDetailsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [contactModal, setContactModal] = useState(false);
-  const [activeFaqId, setActiveFaqId] = useState(1);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1500);
@@ -233,31 +231,7 @@ export default function ServiceDetailsPage() {
               <p>Discover updates, product insights, and the latest in business technology.</p>
             </div>
             <div className="w-full max-w-190.5 lg:ml-auto">
-              {serviceDetailsFaqs.map((faq, index) => {
-                const isActive = faq.id === activeFaqId;
-                const nextIsActive = serviceDetailsFaqs[index + 1]?.id === activeFaqId;
-                return (
-                  <div
-                    key={faq.id}
-                    className={`border-gray-light block overflow-hidden border-b ${isActive ? "rounded-lg border border-primary/20 bg-primary/5" : ""} ${nextIsActive ? "border-b-0" : ""}`}
-                  >
-                    <button
-                      type="button"
-                      className="group hover:text-secondary flex w-full items-center justify-between gap-4 px-2.5 py-4 text-left text-lg/5.5 text-black duration-300 sm:px-4 sm:text-xl/6 lg:py-6 xl:text-2xl/8"
-                      aria-expanded={isActive}
-                      onClick={() => setActiveFaqId((prev) => (prev === faq.id ? 0 : faq.id))}
-                    >
-                      <span className="flex-1">{faq.question}</span>
-                      {isActive ? (
-                        <Minus className="text-primary size-4 shrink-0 lg:size-6" />
-                      ) : (
-                        <Plus className="text-gray size-4 shrink-0 lg:size-6" />
-                      )}
-                    </button>
-                    {isActive && <div className="px-2.5 pb-4 sm:px-4 sm:pt-2">{faq.answer}</div>}
-                  </div>
-                );
-              })}
+              <FaqAccordion items={serviceDetailsFaqs} initialActiveId={1} />
             </div>
           </div>
         </div>
