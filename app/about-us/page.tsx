@@ -343,7 +343,7 @@ export default function AboutUsPage() {
 
         <div className="py-14 lg:py-16">
           <div className="section-heading container">
-            <h2>Highlights from Aetherial Labs</h2>
+            <h2>Highlights from iCode Ltd</h2>
           </div>
           <div className="mt-8 lg:mt-12">
             <Swiper

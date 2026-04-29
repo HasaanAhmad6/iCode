@@ -101,7 +101,7 @@ export default function CareerPage() {
             <div className="grid items-start gap-8 xl:grid-cols-2 2xl:flex 2xl:gap-16">
               <div className="w-full 2xl:max-w-lg">
                 <div className="section-heading text-left">
-                  <div>Life at Aetherial Labs</div>
+                  <div>Life at iCode Ltd</div>
                   <h2>Where work is meaningful, structured, and people-focused.</h2>
                 </div>
                 <div className="border-gray-light mt-8 grid gap-x-4 border-l-4 pl-4 sm:grid-cols-2 lg:mt-12">

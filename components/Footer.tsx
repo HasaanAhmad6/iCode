@@ -28,7 +28,7 @@ export function Footer() {
               </div>
             </div>
             <div className="mt-12 hidden text-base font-medium lg:block">
-              &copy; {new Date().getFullYear()} Aetherial Labs. All rights reserved.
+              &copy; {new Date().getFullYear()} iCode Ltd. All rights reserved.
             </div>
           </div>
           <div className="grid grid-cols-1 gap-10 text-base font-medium sm:grid-cols-3 lg:flex lg:gap-4 xl:gap-6">
@@ -86,7 +86,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-gray-light block border-t py-6 text-center text-base font-medium lg:hidden">
-          &copy; {new Date().getFullYear()} Aetherial Labs. All rights reserved.
+          &copy; {new Date().getFullYear()} iCode Ltd. All rights reserved.
         </div>
       </div>
     </footer>

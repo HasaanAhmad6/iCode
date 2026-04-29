@@ -1,9 +1,28 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Aetherial Labs",
-  description: "Static Next.js migration for Aetherial Labs template.",
+  metadataBase: new URL(SITE_URL),
+  title: "iCode Ltd",
+  description: "iCode Ltd helps businesses grow with strategy, design, and technology.",
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "iCode Ltd",
+    title: "iCode Ltd",
+    description: "iCode Ltd helps businesses grow with strategy, design, and technology.",
+    url: SITE_URL,
+    images: [{ url: `${SITE_URL}/assets/images/logo.svg` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "iCode Ltd",
+    description: "iCode Ltd helps businesses grow with strategy, design, and technology.",
+    images: [`${SITE_URL}/assets/images/logo.svg`],
+  },
 };
 
 export default function RootLayout({

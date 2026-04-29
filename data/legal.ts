@@ -11,7 +11,7 @@ export const privacyPolicySections = [
   {
     title: "1. Introduction",
     paragraphs: [
-      "At Aetherial Labs, we respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
+      "At iCode Ltd, we respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
     ],
   },
   {
@@ -72,7 +72,7 @@ export const termsSections = [
   {
     title: "3. Intellectual Property",
     paragraphs: [
-      "All content, design, and trademarks belong to Aetherial Labs. You may not copy, reproduce, or distribute without permission.",
+      "All content, design, and trademarks belong to iCode Ltd. You may not copy, reproduce, or distribute without permission.",
     ],
   },
   {
