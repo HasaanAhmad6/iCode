@@ -2,7 +2,6 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 const htmlRoutes = new Set([
-  "pricing-comparison",
   "privacy-policy",
   "terms",
 ]);
@@ -19,5 +18,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/pricing-comparison", "/privacy-policy", "/terms"],
+  matcher: ["/privacy-policy", "/terms"],
 };
