@@ -6,25 +6,21 @@ import type { Swiper as SwiperType } from "swiper";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
-  AlignJustify,
-  AtSign,
   BadgeCheck,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Code,
-  Globe,
   Headset,
   Layers,
   Megaphone,
   Palette,
-  Phone,
   Rocket,
   Sigma,
-  Share2,
   TrendingUp,
-  X,
 } from "lucide-react";
+import { ContactModal } from "@/components/ContactModal";
+import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -269,122 +265,16 @@ export default function HomePage() {
         )}
       </div>
 
-      <header className="sticky top-0 z-50 bg-white">
-        <div className="container">
-          <div className="flex items-center justify-between gap-5 border-b border-black/20 py-5 lg:py-0">
-            <Link href="/" className="shrink-0 text-black/50 hover:text-black">
-              <img src="/assets/images/logo.svg" alt="Logo" className="w-50 sm:w-60 xl:w-70" />
-            </Link>
-
-            {menuOpen && (
-              <button
-                type="button"
-                aria-label="Close menu overlay"
-                className="fixed inset-0 z-50 bg-black/70 lg:hidden"
-                onClick={() => setMenuOpen(false)}
-              />
-            )}
-
-            <div
-              className={`menu fixed inset-y-0 left-0 z-50 flex w-70 transform flex-col gap-1 overflow-y-auto bg-white p-4 transition-transform duration-300 sm:w-80 lg:static lg:z-auto lg:w-auto lg:transform-none lg:flex-row lg:items-center lg:gap-6 lg:overflow-visible lg:bg-transparent lg:p-0 xl:gap-10 ${menuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
-            >
-              <Link href="/" className="border-gray-light mb-2 inline-block shrink-0 border-b-4 border-double pt-3 pb-5 lg:hidden">
-                <img src="/assets/images/logo.svg" alt="Logo" className="w-50 sm:w-60" />
-              </Link>
-
-              <Link href="/" className="nav-link active">
-                Home
-              </Link>
-
-              <div
-                className="relative"
-                onMouseEnter={() => isDesktop && setServicesOpen(true)}
-                onMouseLeave={() => isDesktop && setServicesOpen(false)}
-              >
-                <button
-                  type="button"
-                  className="nav-link flex items-center gap-1.5"
-                  onClick={() => !isDesktop && setServicesOpen((prev) => !prev)}
-                >
-                  Services
-                  <ChevronDown className={`size-4 shrink-0 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-                </button>
-                {servicesOpen && (
-                  <div
-                    className={
-                      isDesktop
-                        ? "absolute top-full left-0 w-max space-y-4 rounded-b-lg border border-gray-light bg-white p-4 shadow-[0_16px_32px_-12px_rgba(88, 92, 95, 0.1)]"
-                        : "static flex w-full flex-col space-y-3 p-3"
-                    }
-                  >
-                    {serviceLinks.map((item) => (
-                      <Link key={item} href="/service-details" className="submenu-nav-link">
-                        {item}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <Link href="/projects" className="nav-link">
-                Projects
-              </Link>
-
-              <div
-                className="relative"
-                onMouseEnter={() => isDesktop && setCompanyOpen(true)}
-                onMouseLeave={() => isDesktop && setCompanyOpen(false)}
-              >
-                <button
-                  type="button"
-                  className="nav-link flex items-center gap-1.5"
-                  onClick={() => !isDesktop && setCompanyOpen((prev) => !prev)}
-                >
-                  Company
-                  <ChevronDown className={`size-4 shrink-0 transition-transform ${companyOpen ? "rotate-180" : ""}`} />
-                </button>
-                {companyOpen && (
-                  <div
-                    className={
-                      isDesktop
-                        ? "absolute top-full left-0 w-max space-y-4 rounded-b-lg border border-gray-light bg-white p-4 shadow-[0_16px_32px_-12px_rgba(88, 92, 95, 0.1)]"
-                        : "static flex w-full flex-col space-y-3 p-3"
-                    }
-                  >
-                    <Link href="/about-us" className="submenu-nav-link">
-                      About us
-                    </Link>
-                    <Link href="/team" className="submenu-nav-link">
-                      Team
-                    </Link>
-                    <Link href="/career" className="submenu-nav-link">
-                      Career
-                    </Link>
-                    <Link href="/blog" className="submenu-nav-link">
-                      Resources
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              <Link href="/contact" className="nav-link">
-                Contact
-              </Link>
-              <a href="tel:(253) 421-7583" className="btn mt-2 pl-3">
-                <Phone className="size-5" /> (253) 421-7583
-              </a>
-            </div>
-
-            <button
-              type="button"
-              className="shrink-0 text-black lg:hidden"
-              onClick={() => setMenuOpen((prev) => !prev)}
-            >
-              <AlignJustify className="size-5" />
-            </button>
-          </div>
-        </div>
-      </header>
+      <Navbar
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        servicesOpen={servicesOpen}
+        setServicesOpen={setServicesOpen}
+        companyOpen={companyOpen}
+        setCompanyOpen={setCompanyOpen}
+        isDesktop={isDesktop}
+        serviceLinks={serviceLinks}
+      />
 
       <div className="grow">
         <div className="pt-14 lg:pt-16">
@@ -889,195 +779,17 @@ export default function HomePage() {
         </div>
       </div>
 
-      <footer className="border-gray-light mt-auto overflow-hidden border-t bg-white pt-14">
-        <div className="container">
-          <div className="flex flex-col justify-between gap-10 pb-10 lg:flex-row lg:items-start">
-            <div className="mx-auto shrink-0 lg:mx-0 lg:w-75 xl:w-105">
-              <div className="space-y-6 text-center lg:text-left">
-                <Link href="/" className="flex">
-                  <img src="/assets/images/logo.svg" alt="Logo" className="mx-auto w-70 md:w-82 lg:mx-0" />
-                </Link>
-                <p>Helping businesses innovate with strategy, design, and technology.</p>
-                <div className="border-gray-light flex items-center justify-center gap-4 lg:justify-start lg:border-b lg:pb-6">
-                  <a href="https://instagram.com" target="_blank" rel="noreferrer" className="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white">
-                    <AtSign className="size-6" />
-                  </a>
-                  <a href="https://facebook.com" target="_blank" rel="noreferrer" className="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white">
-                    <Share2 className="size-6" />
-                  </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white">
-                    <Globe className="size-6" />
-                  </a>
-                  <a href="https://twitter.com" target="_blank" rel="noreferrer" className="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white">
-                    <AtSign className="size-6" />
-                  </a>
-                </div>
-              </div>
-              <div className="mt-12 hidden text-base font-medium lg:block">
-                &copy; {new Date().getFullYear()} Aetherial Labs. All rights reserved.
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-10 text-base font-medium sm:grid-cols-3 lg:flex lg:gap-4 xl:gap-6">
-              <div className="space-y-6 lg:w-50">
-                <div className="text-primary font-semibold">Contact</div>
-                <div className="space-y-4">
-                  <div className="space-y-1">
-                    <div className="text-black">Email:</div>
-                    <a href="mailto:work@aetherial_labs.com" className="hover:text-primary block truncate transition">
-                      work@aetherial_labs.com
-                    </a>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="text-black">Phone:</div>
-                    <a href="tel:(253) 421-7583" className="hover:text-primary transition">
-                      +(253) 421-7583
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-6 lg:w-40 xl:w-50">
-                <div className="text-primary font-semibold">Company</div>
-                <div className="flex flex-col items-start space-y-4">
-                  <Link href="/about-us" className="hover:text-primary transition">
-                    About Us
-                  </Link>
-                  <Link href="/services" className="hover:text-primary transition">
-                    Our Services
-                  </Link>
-                  <Link href="/projects" className="hover:text-primary transition">
-                    Projects
-                  </Link>
-                  <Link href="/blog" className="hover:text-primary transition">
-                    Blog
-                  </Link>
-                </div>
-              </div>
-              <div className="space-y-6 lg:w-40 xl:w-50">
-                <div className="text-primary font-semibold">Support</div>
-                <div className="flex flex-col items-start space-y-4">
-                  <Link href="/contact" className="hover:text-primary transition">
-                    Contact
-                  </Link>
-                  <Link href="/faq" className="hover:text-primary transition">
-                    FAQs
-                  </Link>
-                  <Link href="/privacy-policy" className="hover:text-primary transition">
-                    Privacy Policy
-                  </Link>
-                  <Link href="/terms" className="hover:text-primary transition">
-                    Terms & Conditions
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="border-gray-light block border-t py-6 text-center text-base font-medium lg:hidden">
-            &copy; {new Date().getFullYear()} Aetherial Labs. All rights reserved.
-          </div>
-        </div>
-      </footer>
-
-      {contactModal && (
-        <div
-          className="fixed inset-0 z-50 m-auto flex justify-center overflow-y-auto bg-white/50 p-4 backdrop-blur-sm"
-          onClick={() => setContactModal(false)}
-        >
-          <div
-            className="border-gray-light relative m-auto flex w-full max-w-150 flex-col gap-6 overflow-hidden rounded-xl border bg-white p-4 shadow-[0_40px_16px_-8px_rgba(13,13,13,0.2)] lg:gap-12 lg:p-12"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="absolute top-4 right-4 z-10 ml-auto bg-white transition hover:text-black sm:top-6 sm:right-6"
-              onClick={() => setContactModal(false)}
-            >
-              <X className="size-5" />
-              <span className="sr-only">Close</span>
-            </button>
-            <h2>Get a quote</h2>
-            <form className="space-y-6 lg:space-y-8">
-              <div className="flex flex-col gap-2.5 lg:gap-4">
-                <label htmlFor="name">Full name</label>
-                <input id="name" type="text" placeholder="Enter your full name" className="form-input" />
-              </div>
-              <div className="flex flex-col gap-2.5 lg:gap-4">
-                <label htmlFor="email">Work email</label>
-                <input id="email" type="email" placeholder="Enter your email address" className="form-input" />
-              </div>
-              <div className="flex flex-col gap-2.5 lg:gap-4">
-                <label>I&apos;m interested in</label>
-                <div className="flex flex-wrap gap-4">
-                  {[
-                    "App Development",
-                    "Web Development",
-                    "UI/UX Design",
-                    "SEO & Marketing",
-                    "AI/ML & Data Engineering",
-                    "Other",
-                  ].map((item) => (
-                    <button
-                      key={item}
-                      type="button"
-                      onClick={() => setInterest(item)}
-                      className={`border-gray-light rounded-lg border px-3 py-2 text-base/5.5 transition lg:px-4 lg:py-3 ${
-                        interest === item
-                          ? "bg-primary-light border-primary/20 text-primary"
-                          : "bg-background hover:bg-primary-light hover:border-primary/20 hover:text-primary"
-                      }`}
-                    >
-                      {item}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="flex flex-col gap-2.5 lg:gap-4">
-                <label>Project Budget</label>
-                <div className="flex flex-wrap gap-4">
-                  {["Under $10,000", "$10,000 - $25,000", "$25,000 - $50,000", "$50,000+", "Not sure yet"].map((item) => (
-                    <button
-                      key={item}
-                      type="button"
-                      onClick={() => setBudget(item)}
-                      className={`border-gray-light rounded-lg border px-3 py-2 text-base/5.5 transition lg:px-4 lg:py-3 ${
-                        budget === item
-                          ? "bg-primary-light border-primary/20 text-primary"
-                          : "bg-background hover:bg-primary-light hover:border-primary/20 hover:text-primary"
-                      }`}
-                    >
-                      {item}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="flex flex-col gap-2.5 lg:gap-4">
-                <label>Expected Timeline</label>
-                <div className="flex flex-wrap gap-4">
-                  {["Immediately", "Within 1 month", "1-3 months", "Flexible"].map((item) => (
-                    <button
-                      key={item}
-                      type="button"
-                      onClick={() => setTimeline(item)}
-                      className={`border-gray-light rounded-lg border px-3 py-2 text-base/5.5 transition lg:px-4 lg:py-3 ${
-                        timeline === item
-                          ? "bg-primary-light border-primary/20 text-primary"
-                          : "bg-background hover:bg-primary-light hover:border-primary/20 hover:text-primary"
-                      }`}
-                    >
-                      {item}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-8 space-y-2 lg:mt-12">
-                <button type="submit" className="btn w-full">
-                  Contact us
-                </button>
-                <p className="text-center text-base/6">Our team typically responds within 1 business day.</p>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      <Footer />
+      <ContactModal
+        open={contactModal}
+        onClose={() => setContactModal(false)}
+        interest={interest}
+        setInterest={setInterest}
+        budget={budget}
+        setBudget={setBudget}
+        timeline={timeline}
+        setTimeline={setTimeline}
+      />
     </>
   );
 }
