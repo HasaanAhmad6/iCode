@@ -20,6 +20,7 @@ import { ContactModal } from "@/components/ContactModal";
 import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { PricingPlans } from "@/components/PricingPlans";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import {
   homeClientLogos,
@@ -370,112 +371,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="bg-secondary py-14 lg:py-16">
-          <div className="container space-y-8 lg:space-y-12">
-            <div className="section-heading">
-              <div>Pricing plans</div>
-              <h2 className="text-white">Simple, Transparent Pricing</h2>
-              <p className="text-gray-light mx-auto max-w-125">
-                Choose the plan that fits your business needs. No hidden fees just clear value and
-                reliable service.
-              </p>
-            </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  title: "Essential",
-                  desc: "Get a professional online presence at a fraction of agency costs.",
-                  cta: "Get Started",
-                  featured: false,
-                  benefits: [
-                    "Professional website setup",
-                    "Mobile-responsive design",
-                    "Up to 5 core pages",
-                    "Basic branding elements",
-                    "Standard support (Email)",
-                    "Monthly analytics overview",
-                  ],
-                },
-                {
-                  title: "Professional",
-                  desc: "Unlock premium features while saving 40% vs. custom builds.",
-                  cta: "Choose Professional",
-                  featured: true,
-                  benefits: [
-                    "Everything in Essential",
-                    "Up to 15 pages included",
-                    "Priority support (Email + Chat)",
-                    "Advanced on-page SEO",
-                    "Conversion-focused UX enhancements",
-                    "Integration with marketing tools",
-                  ],
-                },
-                {
-                  title: "Business Plus",
-                  desc: "Get enterprise-level capabilities for up to 50% less than agency retainers.",
-                  cta: "Upgrade to Business Plus",
-                  featured: false,
-                  benefits: [
-                    "Everything in Professional",
-                    "Unlimited pages & modules",
-                    "Dedicated account manager",
-                    "Monthly performance strategy call",
-                    "Automation workflow setup",
-                    "Detailed analytics & reporting",
-                  ],
-                },
-              ].map((plan) => (
-                <div
-                  key={plan.title}
-                  className={`rounded-lg border-2 p-4 backdrop-blur-[30px] lg:py-8 xl:px-8 ${
-                    plan.featured
-                      ? "border-gray-light/20 relative z-1 overflow-hidden"
-                      : "border-gray-light/5 bg-white/2 lg:mt-8"
-                  }`}
-                >
-                  <div className="section-heading text-left">
-                    <h3 className="text-white">{plan.title}</h3>
-                    <p className="text-gray-light mt-2">{plan.desc}</p>
-                  </div>
-                  <div className="mt-6 text-5xl font-medium text-white lg:mt-8">
-                    $99
-                    <span className="ml-2.5 inline text-xl font-light opacity-60 lg:text-2xl">
-                      / month
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    className={`btn mt-4 w-full justify-center lg:mt-6 ${
-                      plan.featured ? "btn-secondary" : "bg-white/5 hover:bg-primary"
-                    }`}
-                  >
-                    {plan.cta}
-                  </button>
-                  <div className="divide-gray-light/20 mt-6 divide-y lg:mt-8">
-                    {plan.benefits.map((benefit) => (
-                      <div
-                        key={benefit}
-                        className="text-gray-light flex items-start gap-2 py-2 lg:py-3"
-                      >
-                        <BadgeCheck
-                          className={`mt-1 size-4 shrink-0 lg:mt-0.75 lg:size-5 ${
-                            plan.featured ? "text-primary" : ""
-                          }`}
-                        />
-                        <p>{benefit}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="text-center">
-              <Link href="/pricing-comparison" className="btn btn-secondary">
-                Compare Plans
-              </Link>
-            </div>
-          </div>
-        </div>
+        <PricingPlans />
 
         <CtaBanner onQuoteClick={() => setContactModal(true)} />
       </div>
