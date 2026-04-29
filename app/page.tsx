@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,234 +19,28 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { ContactModal } from "@/components/ContactModal";
+import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import {
+  homeClientLogos,
+  homeProjects,
+  homeServiceLinks,
+  homeTestimonials,
+} from "@/data/home";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  url: string;
-  category: string;
-  tag: string;
-};
-
-type Testimonial = {
-  id: number;
-  company: string;
-  subject: string;
-  message: string;
-  person_image: string;
-  name: string;
-  designation: string;
-};
-
-function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true);
-        }
-      },
-      { threshold: 0.5 },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [started]);
-
-  useEffect(() => {
-    if (!started) return;
-    const duration = 1200;
-    const stepTime = Math.max(Math.floor(duration / target), 10);
-    const interval = setInterval(() => {
-      setCount((prev) => {
-        if (prev >= target) {
-          clearInterval(interval);
-          return target;
-        }
-        return prev + 1;
-      });
-    }, stepTime);
-    return () => clearInterval(interval);
-  }, [started, target]);
-
-  return (
-    <div ref={ref} className="text-primary text-3xl sm:text-4xl xl:text-5xl/14">
-      {count}
-      {suffix}
-    </div>
-  );
-}
-
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [companyOpen, setCompanyOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
   const [contactModal, setContactModal] = useState(false);
-  const [interest, setInterest] = useState("");
-  const [budget, setBudget] = useState("");
-  const [timeline, setTimeline] = useState("");
   const [testimonialsSwiper, setTestimonialsSwiper] = useState<SwiperType | null>(null);
-  const prevRef = useRef<HTMLButtonElement>(null);
-  const nextRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    const onResize = () => setIsDesktop(window.innerWidth >= 1024);
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  useEffect(() => {
-    if (!isDesktop) return;
-    setMenuOpen(false);
-  }, [isDesktop]);
-
-  const projects: Project[] = useMemo(
-    () => [
-      {
-        id: 1,
-        title: "NovaCommerce Platform",
-        description: "A scalable e-commerce platform built for speed, security, and growth.",
-        image: "/assets/images/project-1.jpg",
-        url: "/project-details",
-        category: "Web Development",
-        tag: "+42% conversion",
-      },
-      {
-        id: 2,
-        title: "Finly App Redesign",
-        description: "A user-focused mobile experience redesigned for clarity and ease of use.",
-        image: "/assets/images/project-1.jpg",
-        url: "/project-details",
-        category: "UX/UI Design",
-        tag: "-38% user drop-off",
-      },
-      {
-        id: 3,
-        title: "Bloomly Brand Identity",
-        description: "A modern visual identity crafted to reflect trust and innovation.",
-        image: "/assets/images/project-1.jpg",
-        url: "/project-details",
-        category: "Branding",
-        tag: "2x brand recall",
-      },
-      {
-        id: 4,
-        title: "GrowFast Campaign",
-        description: "A performance-driven digital campaign optimized for qualified leads.",
-        image: "/assets/images/project-1.jpg",
-        url: "/project-details",
-        category: "Digital Marketing",
-        tag: "+61% lead growth",
-      },
-      {
-        id: 5,
-        title: "NovaCommerce Platform",
-        description: "A scalable e-commerce platform built for speed, security, and growth.",
-        image: "/assets/images/project-1.jpg",
-        url: "/project-details",
-        category: "Web Development",
-        tag: "+42% conversion",
-      },
-      {
-        id: 6,
-        title: "Finly App Redesign",
-        description: "A user-focused mobile experience redesigned for clarity and ease of use.",
-        image: "/assets/images/project-1.jpg",
-        url: "/project-details",
-        category: "UX/UI Design",
-        tag: "-38% user drop-off",
-      },
-    ],
-    [],
-  );
-
-  const testimonials: Testimonial[] = useMemo(
-    () => [
-      {
-        id: 1,
-        company: "Technocrat Pvt. Ltd.",
-        subject: "Execution was smooth, structured, and highly professional.",
-        message:
-          "The team demonstrated a strong understanding of our requirements from the start. Their ability to translate ideas into a functional and visually refined solution helped us move faster without compromising quality.",
-        person_image: "/assets/images/client-3.png",
-        name: "Petar Garcia",
-        designation: "Product Lead",
-      },
-      {
-        id: 2,
-        company: "BlueOrbit Solutions",
-        subject: "A rare balance of creativity and technical clarity.",
-        message:
-          "Every design and development decision was backed by logic and user insight. The final outcome aligned perfectly with our business objectives and user expectations.",
-        person_image: "/assets/images/client-3.png",
-        name: "Sophia Martinez",
-        designation: "UX Manager",
-      },
-      {
-        id: 3,
-        company: "NextWave Digital",
-        subject: "They delivered measurable impact, not just deliverables.",
-        message:
-          "From planning to execution, the process was transparent and result-oriented. We saw noticeable improvements in engagement and conversion within weeks of launch.",
-        person_image: "/assets/images/client-3.png",
-        name: "Daniel Thompson",
-        designation: "Growth Head",
-      },
-      {
-        id: 4,
-        company: "BlueOrbit Solutions",
-        subject: "A rare balance of creativity and technical clarity.",
-        message:
-          "Every design and development decision was backed by logic and user insight. The final outcome aligned perfectly with our business objectives and user expectations.",
-        person_image: "/assets/images/client-3.png",
-        name: "Sophia Martinez",
-        designation: "UX Manager",
-      },
-    ],
-    [],
-  );
-
-  const logos = [
-    "/assets/images/logo.svg",
-    "/assets/images/logo.svg",
-    "/assets/images/logo.svg",
-    "/assets/images/logo.svg",
-    "/assets/images/logo.svg",
-    "/assets/images/logo.svg",
-    "/assets/images/logo.svg",
-    "/assets/images/logo.svg",
-  ];
-
-  const serviceLinks = [
-    "Web Development",
-    "Brand Identity",
-    "Product Design",
-    "Marketing Solutions",
-    "UI/UX Design",
-    "Social Media Management",
-  ];
 
   return (
     <>
@@ -265,16 +59,7 @@ export default function HomePage() {
         )}
       </div>
 
-      <Navbar
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-        servicesOpen={servicesOpen}
-        setServicesOpen={setServicesOpen}
-        companyOpen={companyOpen}
-        setCompanyOpen={setCompanyOpen}
-        isDesktop={isDesktop}
-        serviceLinks={serviceLinks}
-      />
+      <Navbar serviceLinks={homeServiceLinks} />
 
       <div className="grow">
         <div className="pt-14 lg:pt-16">
@@ -418,7 +203,7 @@ export default function HomePage() {
               }}
               autoplay={{ delay: 2000, disableOnInteraction: false }}
             >
-              {projects.map((project) => (
+              {homeProjects.map((project) => (
                 <SwiperSlide key={project.id}>
                   <div className="border-gray-light group relative flex h-full flex-col gap-4 overflow-hidden rounded-lg border bg-white p-4 lg:p-6">
                     <div className="space-y-2 sm:space-y-4">
@@ -480,7 +265,7 @@ export default function HomePage() {
               1568: { slidesPerView: 8, spaceBetween: 48 },
             }}
           >
-            {logos.map((logo, index) => (
+            {homeClientLogos.map((logo, index) => (
               <SwiperSlide key={`${logo}-${index}`}>
                 <div className="border-gray-light flex justify-center rounded-lg border bg-white px-2 py-6 shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
                   <img src={logo} alt="Logo" className="w-full max-w-34" />
@@ -570,7 +355,6 @@ export default function HomePage() {
               </div>
               <div className="mt-auto flex gap-4 lg:gap-6">
                 <button
-                  ref={prevRef}
                   type="button"
                   onClick={() => testimonialsSwiper?.slidePrev()}
                   className="border-gray-light grid size-9 shrink-0 place-content-center rounded-lg border bg-white text-black transition hover:bg-black hover:text-white lg:size-11"
@@ -578,7 +362,6 @@ export default function HomePage() {
                   <ChevronLeft className="size-5" />
                 </button>
                 <button
-                  ref={nextRef}
                   type="button"
                   onClick={() => testimonialsSwiper?.slideNext()}
                   className="border-gray-light grid size-9 shrink-0 place-content-center rounded-lg border bg-white text-black transition hover:bg-black hover:text-white lg:size-11"
@@ -604,7 +387,7 @@ export default function HomePage() {
                   1280: { slidesPerView: 2.5 },
                 }}
               >
-                {testimonials.map((item) => (
+                {homeTestimonials.map((item) => (
                   <SwiperSlide key={item.id}>
                     <div className="border-gray-light flex h-full flex-col gap-8 rounded-lg border bg-white p-4 lg:gap-14 lg:p-6">
                       <div className="grow space-y-4 lg:min-h-78">
@@ -780,16 +563,7 @@ export default function HomePage() {
       </div>
 
       <Footer />
-      <ContactModal
-        open={contactModal}
-        onClose={() => setContactModal(false)}
-        interest={interest}
-        setInterest={setInterest}
-        budget={budget}
-        setBudget={setBudget}
-        timeline={timeline}
-        setTimeline={setTimeline}
-      />
+      <ContactModal open={contactModal} onClose={() => setContactModal(false)} />
     </>
   );
 }

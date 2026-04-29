@@ -1,30 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import type { Dispatch, SetStateAction } from "react";
+import { useEffect, useState } from "react";
 import { AlignJustify, ChevronDown, Phone } from "lucide-react";
 
 type NavbarProps = {
-  menuOpen: boolean;
-  setMenuOpen: Dispatch<SetStateAction<boolean>>;
-  servicesOpen: boolean;
-  setServicesOpen: Dispatch<SetStateAction<boolean>>;
-  companyOpen: boolean;
-  setCompanyOpen: Dispatch<SetStateAction<boolean>>;
-  isDesktop: boolean;
   serviceLinks: string[];
 };
 
-export function Navbar({
-  menuOpen,
-  setMenuOpen,
-  servicesOpen,
-  setServicesOpen,
-  companyOpen,
-  setCompanyOpen,
-  isDesktop,
-  serviceLinks,
-}: NavbarProps) {
+export function Navbar({ serviceLinks }: NavbarProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const onResize = () => setIsDesktop(window.innerWidth >= 1024);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+    setMenuOpen(false);
+  }, [isDesktop]);
+
   return (
     <header className="sticky top-0 z-50 bg-white">
       <div className="container">

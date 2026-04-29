@@ -1,26 +1,16 @@
 import { X } from "lucide-react";
+import { useState } from "react";
 
 type ContactModalProps = {
   open: boolean;
   onClose: () => void;
-  interest: string;
-  setInterest: (value: string) => void;
-  budget: string;
-  setBudget: (value: string) => void;
-  timeline: string;
-  setTimeline: (value: string) => void;
 };
 
-export function ContactModal({
-  open,
-  onClose,
-  interest,
-  setInterest,
-  budget,
-  setBudget,
-  timeline,
-  setTimeline,
-}: ContactModalProps) {
+export function ContactModal({ open, onClose }: ContactModalProps) {
+  const [interest, setInterest] = useState("");
+  const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
+
   if (!open) return null;
 
   return (

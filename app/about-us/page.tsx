@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay, FreeMode, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,63 +18,24 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { ContactModal } from "@/components/ContactModal";
+import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import {
+  AboutValueIcon,
+  aboutJourneys,
+  aboutPosts,
+  aboutServiceLinks,
+  aboutTeams,
+  aboutTestimonials,
+  aboutValues,
+} from "@/data/about";
 
 import "swiper/css";
 
-function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started) setStarted(true);
-      },
-      { threshold: 0.5 },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [started]);
-
-  useEffect(() => {
-    if (!started) return;
-    const duration = 1200;
-    const stepTime = Math.max(Math.floor(duration / target), 10);
-    const interval = setInterval(() => {
-      setCount((prev) => {
-        if (prev >= target) {
-          clearInterval(interval);
-          return target;
-        }
-        return prev + 1;
-      });
-    }, stepTime);
-    return () => clearInterval(interval);
-  }, [started, target]);
-
-  return (
-    <div ref={ref} className="text-primary text-3xl sm:text-4xl xl:text-5xl/14">
-      {count}
-      {suffix}
-    </div>
-  );
-}
-
 export default function AboutUsPage() {
   const [isLoading, setIsLoading] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [companyOpen, setCompanyOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
   const [contactModal, setContactModal] = useState(false);
-  const [interest, setInterest] = useState("");
-  const [budget, setBudget] = useState("");
-  const [timeline, setTimeline] = useState("");
   const [activeValue, setActiveValue] = useState(0);
   const [activeTeam, setActiveTeam] = useState(0);
   const [testimonialsSwiper, setTestimonialsSwiper] = useState<SwiperType | null>(null);
@@ -84,127 +45,6 @@ export default function AboutUsPage() {
     const timer = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    const onResize = () => setIsDesktop(window.innerWidth >= 1024);
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  useEffect(() => {
-    if (!isDesktop) return;
-    setMenuOpen(false);
-  }, [isDesktop]);
-
-  const serviceLinks = [
-    "Web Development",
-    "Brand Identity",
-    "Product Design",
-    "Marketing Solutions",
-    "UI/UX Design",
-    "Social Media Management",
-  ];
-
-  const values = [
-    {
-      number: "01",
-      icon: <BadgeCheck className="size-6 shrink-0" />,
-      title: "Excellence",
-      description:
-        "To deliver meaningful digital experiences that help businesses grow, thrive, and stay future-ready. We combine industry expertise with a human-centric approach to create solutions that stand the test of time.",
-    },
-    {
-      number: "02",
-      icon: <Rocket className="size-6 shrink-0" />,
-      title: "Collaboration",
-      description:
-        "We believe great outcomes are built together, through open communication and shared understanding. Our clients are true partners, and we work side-by-side to turn goals into impactful solutions.",
-    },
-    {
-      number: "03",
-      icon: <Lightbulb className="size-6 shrink-0" />,
-      title: "Innovation",
-      description:
-        "We stay forward-thinking by embracing new ideas, modern tools, and evolving industry trends. Innovation drives our solutions, helping businesses stay competitive and future-ready.",
-    },
-    {
-      number: "04",
-      icon: <ShieldCheck className="size-6 shrink-0" />,
-      title: "Integrity",
-      description:
-        "We build lasting relationships through transparency, honesty, and dependable communication. Integrity guides every decision we make, ensuring trust and accountability at every step.",
-    },
-  ];
-
-  const journeys = [
-    {
-      year: "2016",
-      title: "The Beginning",
-      description:
-        "We started as a small team with a big vision: to help businesses grow through thoughtful design and technology.",
-    },
-    {
-      year: "2019 - 2021",
-      title: "Expanding Our Capabilities",
-      description:
-        "As our clients' needs grew, so did our expertise across product design, development, and digital strategy.",
-    },
-    {
-      year: "2021 - 2023",
-      title: "Serving Global Clients",
-      description:
-        "Our work reached international markets, partnering with teams across industries and time zones.",
-    },
-    {
-      year: "2024 - 2025",
-      title: "Scaling With Innovation",
-      description:
-        "We embraced modern technologies, automation, and scalable systems to elevate our services.",
-    },
-  ];
-
-  const teams = useMemo(
-    () => [
-      { image: "/assets/images/career-section-1.jpg", name: "Amanda Harris", designation: "Founder & Product Strategist" },
-      { image: "/assets/images/career-section-2.jpg", name: "Josh Brown", designation: "Senior Full-Stack Developer" },
-      { image: "/assets/images/main-banner.jpg", name: "Maria Milevski", designation: "Lead UI/UX Designer" },
-      { image: "/assets/images/service-5.jpg", name: "Cynthia Jones", designation: "Brand & Marketing Lead" },
-      { image: "/assets/images/service-6.jpg", name: "Manuel Castro", designation: "Automation & Systems Architect" },
-      { image: "/assets/images/sticky-notes.jpg", name: "Ethan Horvat", designation: "Project & Client Success Manager" },
-    ],
-    [],
-  );
-
-  const testimonials = [
-    {
-      company: "Technocrat Pvt. Ltd.",
-      subject: "Execution was smooth, structured, and highly professional.",
-      message:
-        "The team demonstrated a strong understanding of our requirements from the start. Their ability to translate ideas into a functional and visually refined solution helped us move faster without compromising quality.",
-      person_image: "/assets/images/client-3.png",
-      name: "Petar Garcia",
-      designation: "Product Lead",
-    },
-    {
-      company: "BlueOrbit Solutions",
-      subject: "A rare balance of creativity and technical clarity.",
-      message:
-        "Every design and development decision was backed by logic and user insight. The final outcome aligned perfectly with our business objectives and user expectations.",
-      person_image: "/assets/images/client-3.png",
-      name: "Sophia Martinez",
-      designation: "UX Manager",
-    },
-  ];
-
-  const posts = [
-    "/assets/images/career-section-1.jpg",
-    "/assets/images/career-section-2.jpg",
-    "/assets/images/main-banner.jpg",
-    "/assets/images/service-5.jpg",
-    "/assets/images/service-6.jpg",
-    "/assets/images/sticky-notes.jpg",
-  ];
 
   return (
     <>
@@ -220,16 +60,7 @@ export default function AboutUsPage() {
         )}
       </div>
 
-      <Navbar
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-        servicesOpen={servicesOpen}
-        setServicesOpen={setServicesOpen}
-        companyOpen={companyOpen}
-        setCompanyOpen={setCompanyOpen}
-        isDesktop={isDesktop}
-        serviceLinks={serviceLinks}
-      />
+      <Navbar serviceLinks={aboutServiceLinks} />
 
       <div className="grow">
         <div className="relative z-1 h-60 overflow-hidden bg-[url('/assets/images/main-banner.jpg')] bg-cover bg-center bg-no-repeat lg:h-85">
@@ -295,8 +126,14 @@ export default function AboutUsPage() {
               <h2>Our values</h2>
             </div>
             <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:flex xl:flex-row">
-              {values.map((value, index) => {
+              {aboutValues.map((value, index) => {
                 const active = activeValue === index;
+                const iconMap = {
+                  "badge-check": <BadgeCheck className="size-6 shrink-0" />,
+                  rocket: <Rocket className="size-6 shrink-0" />,
+                  lightbulb: <Lightbulb className="size-6 shrink-0" />,
+                  "shield-check": <ShieldCheck className="size-6 shrink-0" />,
+                } as const satisfies Record<AboutValueIcon, unknown>;
                 return (
                   <button
                     key={value.number}
@@ -311,7 +148,7 @@ export default function AboutUsPage() {
                       {active ? <Minus className="size-5 shrink-0 lg:size-10" /> : <Plus className="size-5 shrink-0 lg:size-10" />}
                     </div>
                     <div className="mt-auto flex items-center gap-2 text-xl font-medium lg:text-2xl">
-                      {value.icon}
+                      {iconMap[value.icon]}
                       <h3 className={active ? "text-white" : "text-gray"}>{value.title}</h3>
                     </div>
                     {active && <p className="text-left">{value.description}</p>}
@@ -341,7 +178,7 @@ export default function AboutUsPage() {
               mousewheel
               breakpoints={{ 640: { slidesPerView: 2, spaceBetween: 32 }, 1024: { slidesPerView: 3, spaceBetween: 36 } }}
             >
-              {journeys.map((item) => (
+              {aboutJourneys.map((item) => (
                 <SwiperSlide key={item.year} className="last:[&_.timeline]:hidden">
                   <div className="flex h-full gap-4 pb-0.5 sm:gap-6">
                     <div className="w-75 space-y-4 sm:w-115 lg:space-y-6">
@@ -369,12 +206,12 @@ export default function AboutUsPage() {
           <div className="container space-y-8 py-14 lg:grid lg:grid-cols-3 lg:gap-12 lg:space-y-0 lg:py-16">
             <div className="border-gray-light group relative z-4 mx-auto flex max-w-120 flex-col gap-4 overflow-hidden rounded-lg border bg-white p-4 lg:max-w-none lg:gap-6 lg:p-6">
               <div className="h-65 overflow-hidden sm:h-75 xl:h-105">
-                <img src={teams[activeTeam].image} alt={teams[activeTeam].name} className="size-full object-cover object-top" />
+                <img src={aboutTeams[activeTeam].image} alt={aboutTeams[activeTeam].name} className="size-full object-cover object-top" />
               </div>
               <div className="border-gray-light flex flex-col gap-3 overflow-hidden border-t pt-2.5 sm:pt-4 lg:pt-6 xl:flex-row xl:items-end">
                 <div className="grow space-y-1 lg:space-y-2">
-                  <h3 className="text-xl font-medium text-black lg:text-2xl">{teams[activeTeam].name}</h3>
-                  <p className="line-clamp-1 text-base/5 lg:text-xl/7">{teams[activeTeam].designation}</p>
+                  <h3 className="text-xl font-medium text-black lg:text-2xl">{aboutTeams[activeTeam].name}</h3>
+                  <p className="line-clamp-1 text-base/5 lg:text-xl/7">{aboutTeams[activeTeam].designation}</p>
                 </div>
               </div>
             </div>
@@ -397,9 +234,9 @@ export default function AboutUsPage() {
                 speed={1000}
                 autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
                 onSwiper={setTeamSwiper}
-                onSlideChange={(swiper) => setActiveTeam(swiper.realIndex % teams.length)}
+                onSlideChange={(swiper) => setActiveTeam(swiper.realIndex % aboutTeams.length)}
               >
-                {teams.map((person, idx) => (
+                {aboutTeams.map((person, idx) => (
                   <SwiperSlide key={`${person.name}-${idx}`} className="group relative size-25! overflow-hidden rounded-xl lg:size-40! xl:size-78!">
                     <img src={person.image} alt={person.name} className="size-full object-cover" />
                   </SwiperSlide>
@@ -471,7 +308,7 @@ export default function AboutUsPage() {
                 slidesPerView={1}
                 breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 1.5, spaceBetween: 24 }, 1280: { slidesPerView: 2.5 } }}
               >
-                {testimonials.map((item, idx) => (
+                {aboutTestimonials.map((item, idx) => (
                   <SwiperSlide key={`${item.name}-${idx}`}>
                     <div className="border-gray-light flex h-full flex-col gap-8 rounded-lg border bg-white p-4 lg:gap-14 lg:p-6">
                       <div className="grow space-y-4 lg:min-h-78">
@@ -512,7 +349,7 @@ export default function AboutUsPage() {
               allowTouchMove={false}
               breakpoints={{ 640: { spaceBetween: 16 } }}
             >
-              {posts.map((image, idx) => (
+              {aboutPosts.map((image, idx) => (
                 <SwiperSlide key={`${image}-${idx}`} className="group relative size-60! overflow-hidden rounded-xl sm:size-75!">
                   <img src={image} alt="post" className="size-full object-cover grayscale-100" />
                 </SwiperSlide>
@@ -523,16 +360,7 @@ export default function AboutUsPage() {
       </div>
 
       <Footer />
-      <ContactModal
-        open={contactModal}
-        onClose={() => setContactModal(false)}
-        interest={interest}
-        setInterest={setInterest}
-        budget={budget}
-        setBudget={setBudget}
-        timeline={timeline}
-        setTimeline={setTimeline}
-      />
+      <ContactModal open={contactModal} onClose={() => setContactModal(false)} />
     </>
   );
 }
