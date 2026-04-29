@@ -2,7 +2,6 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 const htmlRoutes = new Set([
-  "blog",
   "blog-details",
   "career",
   "contact",
@@ -26,5 +25,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/blog", "/blog-details", "/career", "/contact", "/faq", "/job-details", "/pricing-comparison", "/privacy-policy", "/team", "/terms"],
+  matcher: ["/blog-details", "/career", "/contact", "/faq", "/job-details", "/pricing-comparison", "/privacy-policy", "/team", "/terms"],
 };
