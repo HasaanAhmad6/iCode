@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Career | Aetherial Labs</title>
+        <meta
+            name="description"
+            content="Aetherial Labs is a modern corporate website template for startups, agencies, and tech companies, featuring responsive design, clean UI, and easy customization."
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Career | Aetherial Labs" />
+        <meta
+            property="og:description"
+            content="Aetherial Labs is a modern corporate website template for startups, agencies, and tech companies, featuring responsive design, clean UI, and easy customization."
+        />
+        <meta property="og:site_name" content="Aetherial Labs" />
+        <meta
+            property="og:url"
+            content="https://aetherial-labs-html.vercel.app/career.html"
+        />
+        <meta
+            property="og:image"
+            content="https://aetherial-labs-html.vercel.app/assets/images/logo.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <!-- Twitter Card Tags -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content="@aetherial_labs" />
+        <meta property="twitter:title" content="Career | Aetherial Labs" />
+        <meta
+            property="twitter:description"
+            content="Aetherial Labs is a modern corporate website template for startups, agencies, and tech companies, featuring responsive design, clean UI, and easy customization."
+        />
+        <meta
+            property="twitter:image"
+            content="https://aetherial-labs-html.vercel.app/assets/images/logo.png"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+            rel="canonical"
+            href="career.html"
+        />
+        <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="assets/css/style.css" />
+    </head>
+    <body x-data="mainFunction()">
+        <div
+            class="relative"
+            x-data="{ isLoading: true }"
+            x-init="setTimeout(() => {isLoading = false }, 1500)"
+        >
+            <div
+                id="preloader"
+                x-show="isLoading"
+                class="fixed inset-0 z-60 flex h-dvh w-full items-center justify-center bg-white"
+                style="display: none"
+            >
+                <span
+                    class="from-background to-background absolute inset-0 animate-pulse bg-linear-to-br via-white"
+                ></span>
+
+                <div
+                    class="border-t-gray/70 border-b-gray-light absolute top-1/2 left-1/2 grid size-10 -translate-1/2 animate-spin place-content-center rounded-full border-y-8 sm:size-14"
+                ></div>
+            </div>
+        </div>
+
+        <header x-data="{ open: false }" class="sticky top-0 z-50 bg-white">
+            <div class="container">
+                <div
+                    class="flex items-center justify-between gap-5 border-b border-black/20 py-5 lg:py-0"
+                >
+                    <a href="index.html" class="shrink-0 text-black/50 hover:text-black">
+                        <img
+                            src="assets/images/logo.svg"
+                            alt="Logo"
+                            class="w-50 sm:w-60 xl:w-70"
+                        />
+                    </a>
+                    <div
+                        class="fixed inset-0 z-50 bg-black/70 lg:hidden"
+                        x-show="open"
+                        x-transition.opacity
+                        @click="open = false"
+                    ></div>
+                    <div
+                        class="menu fixed inset-y-0 left-0 z-50 flex w-70 transform flex-col gap-1 overflow-y-auto bg-white p-4 transition-transform duration-300 sm:w-80 lg:static lg:z-auto lg:w-auto lg:transform-none lg:flex-row lg:items-center lg:gap-6 lg:overflow-visible lg:bg-transparent lg:p-0 xl:gap-10"
+                        :class="open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
+                    >
+                        <a
+                            href="index.html"
+                            class="border-gray-light mb-2 inline-block shrink-0 border-b-4 border-double pt-3 pb-5 lg:hidden"
+                        >
+                            <img
+                                src="assets/images/logo.svg"
+                                alt="Logo"
+                                class="w-50 sm:w-60"
+                            />
+                        </a>
+                        <a href="index.html" class="nav-link">Home</a>
+                        <div
+                            x-data="{ open: false, isDesktop: window.innerWidth >= 1024 }"
+                            x-init="
+                                // Update on resize
+                                window.addEventListener('resize', () => {
+                                    isDesktop = window.innerWidth >= 1024;
+                                });
+                            "
+                            @mouseenter="if (isDesktop) open = true"
+                            @mouseleave="if (isDesktop) open = false"
+                            class="relative"
+                        >
+                            <button
+                                @click="if (!isDesktop) open = !open"
+                                class="nav-link flex items-center gap-1.5"
+                                type="button"
+                            >
+                                Services
+                                <i
+                                    data-lucide="chevron-down"
+                                    class="size-4 shrink-0 transition-transform"
+                                    :class="open && 'rotate-180'"
+                                ></i>
+                            </button>
+
+                            <div
+                                x-show="open"
+                                x-cloak
+                                x-transition
+                                @click.outside="open = false"
+                                :class="isDesktop
+            ? 'absolute top-full left-0 w-max border border-gray-light rounded-b-lg bg-white p-4 shadow-[0_16px_32px_-12px_rgba(88, 92, 95, 0.1)] space-y-4'
+            : 'static w-full flex flex-col space-y-3 p-3'"
+                            >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Web Development</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Brand Identity</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Product Design</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Marketing Solutions</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >UI/UX Design</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Social Media Management</a
+                                >
+                            </div>
+                        </div>
+                        <a href="projects.html" class="nav-link">Projects</a>
+                        <div
+                            x-data="{ open: false, isDesktop: window.innerWidth >= 1024 }"
+                            x-init="
+                                // Update on resize
+                                window.addEventListener('resize', () => {
+                                    isDesktop = window.innerWidth >= 1024;
+                                });
+                            "
+                            @mouseenter="if (isDesktop) open = true"
+                            @mouseleave="if (isDesktop) open = false"
+                            class="relative"
+                        >
+                            <button
+                                @click="if (!isDesktop) open = !open"
+                                class="nav-link active flex items-center gap-1.5"
+                                type="button"
+                            >
+                                Company
+                                <i
+                                    data-lucide="chevron-down"
+                                    class="size-4 shrink-0 transition-transform"
+                                    :class="open && 'rotate-180'"
+                                ></i>
+                            </button>
+
+                            <div
+                                x-show="open"
+                                x-cloak
+                                x-transition
+                                @click.outside="open = false"
+                                :class="isDesktop
+            ? 'absolute top-full left-0 w-max border border-gray-light rounded-b-lg bg-white p-4 shadow-[0_16px_32px_-12px_rgba(88, 92, 95, 0.1)] space-y-4'
+            : 'static w-full flex flex-col space-y-3 p-3'"
+                            >
+                                <a
+                                    href="about-us.html"
+                                    class="submenu-nav-link"
+                                    >About us</a
+                                >
+                                <a href="team.html" class="submenu-nav-link"
+                                    >Team</a
+                                >
+                                <a
+                                    href="career.html"
+                                    class="submenu-nav-link active"
+                                    >Career</a
+                                >
+                                <a href="blog.html" class="submenu-nav-link"
+                                    >Resources</a
+                                >
+                            </div>
+                        </div>
+
+                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="tel:(253) 421-7583" class="btn mt-2 pl-3">
+                            <i data-lucide="phone"></i> (253) 421-7583
+                        </a>
+                    </div>
+                    <button
+                        type="button"
+                        class="shrink-0 text-black lg:hidden"
+                        @click="open = !open"
+                    >
+                        <i data-lucide="text-align-justify" class="size-5"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="grow">
+            <div
+                class="relative z-1 h-60 overflow-hidden bg-[url('../images/main-banner.jpg')] bg-cover bg-center bg-no-repeat lg:h-85"
+            >
+                <span
+                    class="sm:from-secondary from-secondary/90 to-secondary/60 absolute inset-0 -z-1 bg-linear-to-r from-50% sm:to-transparent lg:from-28%"
+                ></span>
+                <div
+                    class="container flex h-full flex-col justify-end gap-3 py-8 sm:gap-4 lg:gap-6 lg:py-16"
+                >
+                    <h1 class="text-white">Work with us</h1>
+                    <p class="text-gray-light max-w-275">
+                        Join a team that values integrity, growth, and long-term
+                        impact.
+                    </p>
+                </div>
+            </div>
+
+            <div class="container py-14 lg:py-16">
+                <div class="section-heading text-left">
+                    <div>Why work with us</div>
+                    <h2>A workplace designed for growth and collaboration.</h2>
+                </div>
+                <div
+                    class="mt-8 grid gap-4 lg:mt-12 lg:grid-cols-2 lg:gap-12 2xl:gap-16"
+                >
+                    <div
+                        class="border-gray-light h-75 overflow-hidden rounded-xl border sm:h-96 lg:h-114"
+                    >
+                        <img
+                            src="assets/images/career-section-1.jpg"
+                            alt="Career section"
+                            width="728"
+                            height="456"
+                            class="size-full object-cover"
+                        />
+                    </div>
+                    <div class="relative grid sm:grid-cols-2">
+                        <span
+                            class="absolute top-1/2 left-1/2 hidden size-12 -translate-1/2 bg-white sm:block"
+                        ></span>
+                        <div
+                            class="group border-gray-light flex flex-col justify-end space-y-3 border-b p-6 pr-0 pl-0 sm:min-h-51 sm:border-r sm:pr-6"
+                        >
+                            <div
+                                class="border-primary/20 bg-primary/5 text-primary grid size-10 place-content-center rounded-lg border transition"
+                            >
+                                <i data-lucide="rocket" class="size-6"></i>
+                            </div>
+                            <h3>Career Growth</h3>
+                            <p>
+                                Over a decade of experience delivering
+                                high-performance digital solutions.
+                            </p>
+                        </div>
+                        <div
+                            class="group border-gray-light flex flex-col justify-end space-y-3 border-b p-6 pr-0 pl-0 sm:min-h-51 sm:pl-6"
+                        >
+                            <div
+                                class="border-primary/20 bg-primary/5 text-primary grid size-10 place-content-center rounded-lg border transition"
+                            >
+                                <i data-lucide="handshake" class="size-6"></i>
+                            </div>
+                            <h3>Supportive Work Culture</h3>
+                            <p>
+                                Respectful, inclusive, and process-driven
+                                environment.
+                            </p>
+                        </div>
+                        <div
+                            class="group border-gray-light flex flex-col justify-end space-y-3 p-6 pr-0 pl-0 sm:min-h-51 sm:border-r sm:pr-6 sm:pb-0"
+                        >
+                            <div
+                                class="border-primary/20 bg-primary/5 text-primary grid size-10 place-content-center rounded-lg border transition"
+                            >
+                                <i
+                                    data-lucide="chart-no-axes-combined"
+                                    class="size-6"
+                                ></i>
+                            </div>
+                            <h3>Stability & Long-Term Vision</h3>
+                            <p>
+                                Long-term vision, ethical leadership,
+                                transparent communication.
+                            </p>
+                        </div>
+                        <div
+                            class="group border-gray-light flex flex-col justify-end space-y-3 border-t p-6 pr-0 pb-0 pl-0 sm:min-h-51 sm:border-t-0 sm:pl-6"
+                        >
+                            <div
+                                class="border-primary/20 bg-primary/5 text-primary grid size-10 place-content-center rounded-lg border transition"
+                            >
+                                <i data-lucide="brain-cog" class="size-6"></i>
+                            </div>
+                            <h3>Meaningful Impact</h3>
+                            <p>
+                                Your work contributes to real-world solutions,
+                                not vanity metrics.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="border-gray-light bg-background border-y py-14 lg:py-16"
+            >
+                <div class="container">
+                    <div
+                        class="grid items-start gap-8 xl:grid-cols-2 2xl:flex 2xl:gap-16"
+                    >
+                        <div class="w-full 2xl:max-w-lg">
+                            <div class="section-heading text-left">
+                                <div>Life at Aetherial Labs</div>
+                                <h2>
+                                    Where work is meaningful, structured, and
+                                    people-focused.
+                                </h2>
+                            </div>
+                            <div
+                                class="border-gray-light mt-8 grid gap-x-4 border-l-4 pl-4 sm:grid-cols-2 lg:mt-12"
+                            >
+                                <div
+                                    class="flex items-center gap-2 py-2 sm:py-3"
+                                >
+                                    <i
+                                        data-lucide="badge-check"
+                                        class="text-primary size-5 shrink-0"
+                                    ></i>
+                                    <p>Collaborative teams</p>
+                                </div>
+                                <div
+                                    class="flex items-center gap-2 py-2 sm:py-3"
+                                >
+                                    <i
+                                        data-lucide="badge-check"
+                                        class="text-primary size-5 shrink-0"
+                                    ></i>
+                                    <p>Leadership accessibility</p>
+                                </div>
+                                <div
+                                    class="flex items-center gap-2 py-2 sm:py-3"
+                                >
+                                    <i
+                                        data-lucide="badge-check"
+                                        class="text-primary size-5 shrink-0"
+                                    ></i>
+                                    <p>Structured workflows</p>
+                                </div>
+                                <div
+                                    class="flex items-center gap-2 py-2 sm:py-3"
+                                >
+                                    <i
+                                        data-lucide="badge-check"
+                                        class="text-primary size-5 shrink-0"
+                                    ></i>
+                                    <p>Work-life balance policies</p>
+                                </div>
+                                <div
+                                    class="flex items-center gap-2 py-2 sm:py-3"
+                                >
+                                    <i
+                                        data-lucide="badge-check"
+                                        class="text-primary size-5 shrink-0"
+                                    ></i>
+                                    <p>Clear Communication</p>
+                                </div>
+                                <div
+                                    class="flex items-center gap-2 py-2 sm:py-3"
+                                >
+                                    <i
+                                        data-lucide="badge-check"
+                                        class="text-primary size-5 shrink-0"
+                                    ></i>
+                                    <p>Professional development</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="border-gray-light hidden h-120 w-full overflow-hidden rounded-xl border lg:block 2xl:max-w-96"
+                        >
+                            <img
+                                src="assets/images/career-section-2.jpg"
+                                alt="Career section"
+                                width="384"
+                                height="480"
+                                class="size-full object-cover"
+                            />
+                        </div>
+                        <div
+                            class="mt-auto grid w-full gap-8 lg:col-span-2 lg:grid-cols-2 xl:gap-12 2xl:flex 2xl:max-w-122 2xl:flex-col"
+                        >
+                            <div class="overflow-hidden">
+                                <img
+                                    src="assets/images/career-section-2a.png"
+                                    alt="Career section"
+                                    width="488"
+                                    height="238"
+                                    class="mx-auto h-auto lg:w-full lg:shadow-[16px_16px_40px_-8px_rgba(13,13,13,0.2)]"
+                                />
+                            </div>
+                            <p
+                                class="border-gray-light mt-auto border-t pt-4 lg:pt-6"
+                            >
+                                Our goal is simple: create impactful solutions
+                                that make a measurable difference, whether
+                                you’re scaling operations, improving user
+                                experience, or building a digital product from
+                                the ground up.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container py-14 lg:py-16">
+                <div class="section-heading">
+                    <h2>Open Positions</h2>
+                    <p class="mx-auto max-w-136">
+                        We help companies streamline operations, elevate brand
+                        presence, and grow faster with trusted technology and
+                        design.
+                    </p>
+                </div>
+                <div
+                    x-data="jobList()"
+                    class="mt-8 grid gap-6 lg:mt-12 lg:grid-cols-2 xl:grid-cols-3"
+                >
+                    <template x-for="job in jobs" :key="job.id">
+                        <div
+                            class="border-gray-light bg-background flex flex-col items-start gap-4 rounded-xl border p-4 lg:p-6"
+                        >
+                            <h3 x-text="job.title"></h3>
+
+                            <div class="mb-2 flex flex-wrap gap-2.5 sm:gap-4">
+                                <div
+                                    class="bg-primary-light border-primary/20 text-primary flex items-center gap-2 rounded border px-2 py-1 text-sm/6 font-semibold"
+                                >
+                                    <i
+                                        data-lucide="map-pin"
+                                        class="size-4 shrink-0"
+                                    ></i>
+                                    <span x-text="job.location"></span>
+                                </div>
+
+                                <div
+                                    class="bg-primary-light border-primary/20 text-primary flex items-center gap-2 rounded border px-2 py-1 text-sm/6 font-semibold"
+                                >
+                                    <i
+                                        data-lucide="clock"
+                                        class="size-4 shrink-0"
+                                    ></i>
+                                    <span x-text="job.type"></span>
+                                </div>
+
+                                <div
+                                    class="bg-primary-light border-primary/20 text-primary flex items-center gap-2 rounded border px-2 py-1 text-sm/6 font-semibold"
+                                >
+                                    <i
+                                        data-lucide="briefcase"
+                                        class="size-4 shrink-0"
+                                    ></i>
+                                    <span x-text="job.experience"></span>
+                                </div>
+                            </div>
+
+                            <p x-text="job.description" class="mb-2"></p>
+
+                            <a href="job-details.html" class="btn mt-auto">
+                                Apply now
+                            </a>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="container pb-14 lg:py-16">
+                <div
+                    class="border-gray-light relative h-75 overflow-hidden rounded-xl border-4 sm:h-100 xl:h-175"
+                >
+                    <img
+                        src="assets/images/video-banner.jpg"
+                        alt="Video Banner"
+                        width="1536"
+                        height="700"
+                        class="h-full w-full object-cover"
+                        loading="lazy"
+                    />
+                    <span class="absolute inset-0 bg-black/25"></span>
+                    <button
+                        type="button"
+                        @click="videoModal = true"
+                        class="border-primary/20 bg-primary-light group absolute top-1/2 left-1/2 mx-auto grid size-10 -translate-1/2 place-items-center rounded-full border shadow-[0_0_0_10px_rgba(255,255,255,0.15),0_0_0_4px_rgba(255,255,255,0.20)] duration-300 sm:size-14"
+                    >
+                        <span
+                            class="absolute inset-0 -z-1 animate-[ping_2s_ease-out_infinite] rounded-full bg-white/20"
+                        ></span>
+                        <i
+                            data-lucide="play"
+                            class="fill-primary text-primary size-4 shrink-0 duration-300 group-hover:scale-90 lg:size-6"
+                        >
+                        </i>
+                        <span class="sr-only">Play video</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer
+            class="border-gray-light mt-auto overflow-hidden border-t bg-white pt-14"
+        >
+            <div class="container">
+                <div
+                    class="flex flex-col justify-between gap-10 pb-10 lg:flex-row lg:items-start"
+                >
+                    <div class="mx-auto shrink-0 lg:mx-0 lg:w-75 xl:w-105">
+                        <div class="space-y-6 text-center lg:text-left">
+                            <a href="index.html" class="flex">
+                                <img
+                                    src="assets/images/logo.svg"
+                                    alt="Logo"
+                                    class="mx-auto w-70 md:w-82 lg:mx-0"
+                                />
+                            </a>
+                            <p>
+                                Helping businesses innovate with strategy,
+                                design, and technology.
+                            </p>
+                            <div
+                                class="border-gray-light flex items-center justify-center gap-4 lg:justify-start lg:border-b lg:pb-6"
+                            >
+                                <a
+                                    href="https://instagram.com/m/https://aetherial-labs-html.vercel.app/"
+                                    target="_blank"
+                                    class="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white"
+                                >
+                                    <i
+                                        data-lucide="instagram"
+                                        class="size-6"
+                                    ></i>
+                                    <span class="sr-only">Instagram</span>
+                                </a>
+                                <a
+                                    href="https://www.facebook.com/sharer/sharer.php?u=https://aetherial-labs-html.vercel.app/"
+                                    target="_blank"
+                                    class="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white"
+                                >
+                                    <i
+                                        data-lucide="facebook"
+                                        class="size-6"
+                                    ></i>
+                                    <span class="sr-only">Facebook</span>
+                                </a>
+                                <a
+                                    href="https://www.linkedin.com/shareArticle?mini=true&url=https://aetherial-labs-html.vercel.app/"
+                                    target="_blank"
+                                    class="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white"
+                                >
+                                    <i
+                                        data-lucide="linkedin"
+                                        class="size-6"
+                                    ></i>
+                                    <span class="sr-only">LinkedIn</span>
+                                </a>
+                                <a
+                                    href="https://twitter.com/intent/tweet?url=https://aetherial-labs-html.vercel.app/&text="
+                                    target="_blank"
+                                    class="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white"
+                                >
+                                    <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        class="size-6"
+                                    >
+                                        <path
+                                            d="M11.7909 2.04175L8.45982 5.84958L5.57965 2.04175H1.4082L6.39242 8.55922L1.66854 13.9584H3.69132L7.33722 9.79248L10.5235 13.9584H14.5917L9.39602 7.08955L13.8126 2.04175H11.7909ZM11.0815 12.7484L3.76892 3.18819H4.97098L12.2016 12.7484H11.0815Z"
+                                            fill="currentColor"
+                                        ></path>
+                                    </svg>
+                                    <span class="sr-only">Twitter</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-12 hidden text-base font-medium lg:block"
+                        >
+                            ©
+                            <span x-text="new Date().getFullYear()"></span>
+                            Aetherial Labs. All rights reserved.
+                        </div>
+                    </div>
+                    <div
+                        class="grid grid-cols-1 gap-10 text-base font-medium sm:grid-cols-3 lg:flex lg:gap-4 xl:gap-6"
+                    >
+                        <div class="space-y-6 lg:w-50">
+                            <div class="text-primary font-semibold">
+                                Contact
+                            </div>
+                            <div class="space-y-4">
+                                <div class="space-y-1">
+                                    <div class="text-black">Email:</div>
+                                    <a
+                                        href="mailto:work@aetherial_labs.com"
+                                        class="hover:text-primary block truncate transition"
+                                        >work@aetherial_labs.com</a
+                                    >
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="text-black">Phone:</div>
+                                    <a
+                                        href="tel:(253) 421-7583"
+                                        class="hover:text-primary transition"
+                                        >+(253) 421-7583</a
+                                    >
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="text-black">Address:</div>
+                                    <div>
+                                        123 Corporate Avenue, Business City
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="text-black">Office Hours:</div>
+                                    <div>Mon–Fri, 9am–6pm</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gray-light hidden w-px shrink-0 lg:inline-block"
+                        ></div>
+                        <div class="space-y-6 lg:w-40 xl:w-50">
+                            <div class="text-primary font-semibold">
+                                Company
+                            </div>
+                            <div class="flex flex-col items-start space-y-4">
+                                <a
+                                    href="about-us.html"
+                                    class="hover:text-primary transition"
+                                    >About Us</a
+                                >
+                                <a
+                                    href="services.html"
+                                    class="hover:text-primary transition"
+                                    >Our Services</a
+                                >
+                                <a
+                                    href="projects.html"
+                                    class="hover:text-primary transition"
+                                    >Projects</a
+                                >
+                                <a
+                                    href="blog.html"
+                                    class="hover:text-primary transition"
+                                    >Blog</a
+                                >
+                                <a
+                                    href="career.html"
+                                    class="hover:text-primary transition"
+                                    >Career</a
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gray-light hidden w-px shrink-0 lg:inline-block"
+                        ></div>
+                        <div class="space-y-6 lg:w-40 xl:w-50">
+                            <div class="text-primary font-semibold">
+                                Support
+                            </div>
+                            <div class="flex flex-col items-start space-y-4">
+                                <a
+                                    href="contact.html"
+                                    class="hover:text-primary transition"
+                                    >Contact</a
+                                >
+                                <a
+                                    href="faq.html"
+                                    class="hover:text-primary transition"
+                                    >FAQs</a
+                                >
+                                <a
+                                    href="privacy-policy.html"
+                                    class="hover:text-primary transition"
+                                    >Privacy Policy</a
+                                >
+                                <a
+                                    href="terms.html"
+                                    class="hover:text-primary transition"
+                                    >Terms & Conditions</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="border-gray-light block border-t py-6 text-center text-base font-medium lg:hidden"
+                >
+                    ©
+                    <span x-text="new Date().getFullYear()"></span>
+                    Aetherial Labs. All rights reserved.
+                </div>
+            </div>
+            <div
+                class="gradient-text -mb-12 hidden overflow-hidden text-center text-[120px]/30 font-bold whitespace-nowrap uppercase opacity-10 lg:block xl:text-[150px]/38 2xl:text-[180px]/45"
+            >
+                Aetherial labs
+            </div>
+        </footer>
+
+        <!-- Video modal -->
+        <div
+            x-transition.opacity=""
+            class="fixed inset-0 z-51 hidden items-center justify-center overflow-y-auto bg-black/70"
+            @click.self="videoModal = false"
+            :class="{ 'flex!': videoModal }"
+        >
+            <div
+                class="relative m-auto w-full max-w-5xl p-2"
+                x-show="videoModal"
+                style="display: none"
+            >
+                <button
+                    @click="videoModal = false"
+                    class="absolute top-0 right-0 rounded-full bg-white p-1 text-2xl text-black transition hover:scale-105"
+                >
+                    <i data-lucide="x" class="size-5"> </i>
+                    <span class="sr-only">Close</span>
+                </button>
+                <div class="aspect-video">
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/GGf1JjSAKP4?rel=0&autoplay=1&v=GGf1JjSAKP4"
+                        frameborder="0"
+                        allowfullscreen=""
+                        class="h-full w-full"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/lucide.min.js"></script>
+        <script src="assets/js/alpine.min.js" defer></script>
+
+        <script>
+            function jobList() {
+                return {
+                    jobs: [
+                        {
+                            id: 1,
+                            title: 'UI/UX Designer',
+                            description:
+                                'Design intuitive user interfaces and improve product usability through research, wireframes, and visual design.',
+                            location: 'Onsite',
+                            type: 'Full-time',
+                            experience: '2–4 Years',
+                        },
+                        {
+                            id: 2,
+                            title: 'Frontend Developer',
+                            description:
+                                'Build responsive web interfaces and collaborate with designers to deliver high-quality user experiences.',
+                            location: 'Remote',
+                            type: 'Full-time',
+                            experience: '3–5 Years',
+                        },
+                        {
+                            id: 3,
+                            title: 'Backend Developer',
+                            description:
+                                'Develop scalable server-side applications and ensure system performance, security, and reliability.',
+                            location: 'Onsite',
+                            type: 'Full-time',
+                            experience: '4-6 Years',
+                        },
+                        {
+                            id: 4,
+                            title: 'Quality Assurance Engineer',
+                            description:
+                                'Test applications, identify defects, and ensure products meet defined quality standards before release.',
+                            location: 'Remote',
+                            type: 'Full-time',
+                            experience: '1–3 Years',
+                        },
+                        {
+                            id: 5,
+                            title: 'Digital Marketing Executive',
+                            description:
+                                'Plan and execute digital campaigns to improve brand visibility, engagement, and lead generation.',
+                            location: 'Remote',
+                            type: 'Part-time',
+                            experience: '1–3 Years',
+                        },
+                        {
+                            id: 6,
+                            title: 'HR Operations Executive',
+                            description:
+                                'Support HR operations, employee coordination, and internal processes to ensure smooth organizational functioning.',
+                            location: 'Onsite',
+                            type: 'Part-time',
+                            experience: '2–5 Years',
+                        },
+                    ],
+                }
+            }
+
+            function mainFunction() {
+                return {
+                    init() {
+                        this.$nextTick(() => lucide.createIcons())
+                    },
+                    videoModal: false,
+                }
+            }
+        </script>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Career | Aetherial Labs",
+                "url": "https://aetherial-labs-html.vercel.app/career.html",
+                "description": "Aetherial Labs is a modern corporate website template for startups, agencies, and tech companies, featuring responsive design, clean UI, and easy customization.",
+                "inLanguage": "en",
+                "image": "https://aetherial-labs-html.vercel.app/assets/images/logo.png",
+                "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "https://aetherial-labs-html.vercel.app/"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Career",
+                            "item": "https://aetherial-labs-html.vercel.app/career.html"
+                        }
+                    ]
+                }
+            }
+        </script>
+    </body>
+</html>

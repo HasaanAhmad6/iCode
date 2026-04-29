@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FAQs | Aetherial Labs</title>
+        <meta
+            name="description"
+            content="Aetherial Labs is a modern corporate website template for startups, agencies, and tech companies, featuring responsive design, clean UI, and easy customization."
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FAQs | Aetherial Labs" />
+        <meta
+            property="og:description"
+            content="Aetherial Labs is a modern corporate website template for startups, agencies, and tech companies, featuring responsive design, clean UI, and easy customization."
+        />
+        <meta property="og:site_name" content="Aetherial Labs" />
+        <meta
+            property="og:url"
+            content="https://aetherial-labs-html.vercel.app/faq.html"
+        />
+        <meta
+            property="og:image"
+            content="https://aetherial-labs-html.vercel.app/assets/images/logo.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <!-- Twitter Card Tags -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content="@aetherial_labs" />
+        <meta property="twitter:title" content="FAQs | Aetherial Labs" />
+        <meta
+            property="twitter:description"
+            content="Aetherial Labs is a modern corporate website template for startups, agencies, and tech companies, featuring responsive design, clean UI, and easy customization."
+        />
+        <meta
+            property="twitter:image"
+            content="https://aetherial-labs-html.vercel.app/assets/images/logo.png"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+            rel="canonical"
+            href="faq.html"
+        />
+        <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="assets/css/style.css" />
+    </head>
+    <body x-data="mainFunction()">
+        <div
+            class="relative"
+            x-data="{ isLoading: true }"
+            x-init="setTimeout(() => {isLoading = false }, 1500)"
+        >
+            <div
+                id="preloader"
+                x-show="isLoading"
+                class="fixed inset-0 z-60 flex h-dvh w-full items-center justify-center bg-white"
+                style="display: none"
+            >
+                <span
+                    class="from-background to-background absolute inset-0 animate-pulse bg-linear-to-br via-white"
+                ></span>
+
+                <div
+                    class="border-t-gray/70 border-b-gray-light absolute top-1/2 left-1/2 grid size-10 -translate-1/2 animate-spin place-content-center rounded-full border-y-8 sm:size-14"
+                ></div>
+            </div>
+        </div>
+
+        <header x-data="{ open: false }" class="sticky top-0 z-50 bg-white">
+            <div class="container">
+                <div
+                    class="flex items-center justify-between gap-5 border-b border-black/20 py-5 lg:py-0"
+                >
+                    <a href="index.html" class="shrink-0 text-black/50 hover:text-black">
+                        <img
+                            src="assets/images/logo.svg"
+                            alt="Logo"
+                            class="w-50 sm:w-60 xl:w-70"
+                        />
+                    </a>
+                    <div
+                        class="fixed inset-0 z-50 bg-black/70 lg:hidden"
+                        x-show="open"
+                        x-transition.opacity
+                        @click="open = false"
+                    ></div>
+                    <div
+                        class="menu fixed inset-y-0 left-0 z-50 flex w-70 transform flex-col gap-1 overflow-y-auto bg-white p-4 transition-transform duration-300 sm:w-80 lg:static lg:z-auto lg:w-auto lg:transform-none lg:flex-row lg:items-center lg:gap-6 lg:overflow-visible lg:bg-transparent lg:p-0 xl:gap-10"
+                        :class="open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
+                    >
+                        <a
+                            href="index.html"
+                            class="border-gray-light mb-2 inline-block shrink-0 border-b-4 border-double pt-3 pb-5 lg:hidden"
+                        >
+                            <img
+                                src="assets/images/logo.svg"
+                                alt="Logo"
+                                class="w-50 sm:w-60"
+                            />
+                        </a>
+                        <a href="index.html" class="nav-link">Home</a>
+                        <div
+                            x-data="{ open: false, isDesktop: window.innerWidth >= 1024 }"
+                            x-init="
+                                // Update on resize
+                                window.addEventListener('resize', () => {
+                                    isDesktop = window.innerWidth >= 1024;
+                                });
+                            "
+                            @mouseenter="if (isDesktop) open = true"
+                            @mouseleave="if (isDesktop) open = false"
+                            class="relative"
+                        >
+                            <button
+                                @click="if (!isDesktop) open = !open"
+                                class="nav-link flex items-center gap-1.5"
+                                type="button"
+                            >
+                                Services
+                                <i
+                                    data-lucide="chevron-down"
+                                    class="size-4 shrink-0 transition-transform"
+                                    :class="open && 'rotate-180'"
+                                ></i>
+                            </button>
+
+                            <div
+                                x-show="open"
+                                x-cloak
+                                x-transition
+                                @click.outside="open = false"
+                                :class="isDesktop
+            ? 'absolute top-full left-0 w-max border border-gray-light rounded-b-lg bg-white p-4 shadow-[0_16px_32px_-12px_rgba(88, 92, 95, 0.1)] space-y-4'
+            : 'static w-full flex flex-col space-y-3 p-3'"
+                            >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Web Development</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Brand Identity</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Product Design</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Marketing Solutions</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >UI/UX Design</a
+                                >
+                                <a
+                                    href="service-details.html"
+                                    class="submenu-nav-link"
+                                    >Social Media Management</a
+                                >
+                            </div>
+                        </div>
+                        <a href="projects.html" class="nav-link">Projects</a>
+                        <div
+                            x-data="{ open: false, isDesktop: window.innerWidth >= 1024 }"
+                            x-init="
+                                // Update on resize
+                                window.addEventListener('resize', () => {
+                                    isDesktop = window.innerWidth >= 1024;
+                                });
+                            "
+                            @mouseenter="if (isDesktop) open = true"
+                            @mouseleave="if (isDesktop) open = false"
+                            class="relative"
+                        >
+                            <button
+                                @click="if (!isDesktop) open = !open"
+                                class="nav-link flex items-center gap-1.5"
+                                type="button"
+                            >
+                                Company
+                                <i
+                                    data-lucide="chevron-down"
+                                    class="size-4 shrink-0 transition-transform"
+                                    :class="open && 'rotate-180'"
+                                ></i>
+                            </button>
+
+                            <div
+                                x-show="open"
+                                x-cloak
+                                x-transition
+                                @click.outside="open = false"
+                                :class="isDesktop
+            ? 'absolute top-full left-0 w-max border border-gray-light rounded-b-lg bg-white p-4 shadow-[0_16px_32px_-12px_rgba(88, 92, 95, 0.1)] space-y-4'
+            : 'static w-full flex flex-col space-y-3 p-3'"
+                            >
+                                <a
+                                    href="about-us.html"
+                                    class="submenu-nav-link"
+                                    >About us</a
+                                >
+                                <a href="team.html" class="submenu-nav-link"
+                                    >Team</a
+                                >
+                                <a href="career.html" class="submenu-nav-link"
+                                    >Career</a
+                                >
+                                <a href="blog.html" class="submenu-nav-link"
+                                    >Resources</a
+                                >
+                            </div>
+                        </div>
+
+                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="tel:(253) 421-7583" class="btn mt-2 pl-3">
+                            <i data-lucide="phone"></i> (253) 421-7583
+                        </a>
+                    </div>
+                    <button
+                        type="button"
+                        class="shrink-0 text-black lg:hidden"
+                        @click="open = !open"
+                    >
+                        <i data-lucide="text-align-justify" class="size-5"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="grow">
+            <div
+                class="relative z-1 h-60 overflow-hidden bg-[url('../images/main-banner.jpg')] bg-cover bg-center bg-no-repeat lg:h-85"
+            >
+                <span
+                    class="sm:from-secondary from-secondary/90 to-secondary/60 absolute inset-0 -z-1 bg-linear-to-r from-50% sm:to-transparent lg:from-28%"
+                ></span>
+                <div
+                    class="container flex h-full flex-col justify-end gap-3 py-8 sm:gap-4 lg:gap-6 lg:py-16"
+                >
+                    <h1 class="text-white">Frequently Asked Questions</h1>
+                    <p class="text-gray-light max-w-275">
+                        Discover updates, product insights, and the latest in
+                        business technology.
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="container grid py-14 lg:grid-cols-2 lg:gap-6 lg:py-16"
+                x-data="faqList"
+                x-init="$nextTick(() => lucide.createIcons())"
+            >
+                <div>
+                    <template
+                        x-for="(faq, index) in faqs.slice(0, 4)"
+                        :key="faq.id"
+                    >
+                        <div
+                            class="border-gray-light block overflow-hidden border-b"
+                            :class="{ 'border bg-primary/5 rounded-lg border-primary/20': faq.id === activeId, 'border-b-0': faqs.slice(0, 4)[index + 1]?.id === activeId }"
+                        >
+                            <button
+                                type="button"
+                                @click="toggle(faq.id)"
+                                :aria-expanded="faq.id === activeId"
+                                :class="{ '': faq.id === activeId }"
+                                class="group hover:text-secondary flex w-full items-center justify-between gap-4 px-2.5 py-4 text-left text-lg/5.5 text-black duration-300 sm:px-4 sm:text-xl/6 lg:py-6 xl:text-2xl/8"
+                            >
+                                <span
+                                    class="flex-1"
+                                    x-text="faq.question"
+                                ></span>
+                                <i
+                                    data-lucide="minus"
+                                    x-show="faq.id === activeId"
+                                    x-cloak
+                                    class="text-gray size-4 shrink-0 lg:size-6"
+                                    :class="{ 'text-primary': faq.id === activeId }"
+                                    aria-hidden="true"
+                                ></i>
+                                <i
+                                    data-lucide="plus"
+                                    x-show="faq.id !== activeId"
+                                    class="text-gray size-4 shrink-0 lg:size-6"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                            <div
+                                x-show="faq.id === activeId"
+                                x-collapse.duration.300ms
+                                x-cloak
+                            >
+                                <div
+                                    class="px-2.5 pb-4 sm:px-4 sm:pt-2"
+                                    x-text="faq.answer"
+                                ></div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div>
+                    <template
+                        x-for="(faq, index) in faqs.slice(4, 8)"
+                        :key="faq.id"
+                    >
+                        <div
+                            class="border-gray-light block overflow-hidden border-b"
+                            :class="{ 'border bg-primary/5 rounded-lg border-primary/20': faq.id === activeId, 'border-b-0': faqs.slice(4, 8)[index + 1]?.id === activeId }"
+                        >
+                            <button
+                                type="button"
+                                @click="toggle(faq.id)"
+                                :aria-expanded="faq.id === activeId"
+                                :class="{ '': faq.id === activeId }"
+                                class="group hover:text-secondary flex w-full items-center justify-between gap-4 px-2.5 py-4 text-left text-lg/5.5 text-black duration-300 sm:px-4 sm:text-xl/6 lg:py-6 xl:text-2xl/8"
+                            >
+                                <span
+                                    class="flex-1"
+                                    x-text="faq.question"
+                                ></span>
+                                <i
+                                    data-lucide="minus"
+                                    x-show="faq.id === activeId"
+                                    x-cloak
+                                    class="text-gray size-4 shrink-0 lg:size-6"
+                                    :class="{ 'text-primary': faq.id === activeId }"
+                                    aria-hidden="true"
+                                ></i>
+                                <i
+                                    data-lucide="plus"
+                                    x-show="faq.id !== activeId"
+                                    class="text-gray size-4 shrink-0 lg:size-6"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                            <div
+                                x-show="faq.id === activeId"
+                                x-collapse.duration.300ms
+                                x-cloak
+                            >
+                                <div
+                                    class="px-2.5 pb-4 sm:px-4 sm:pt-2"
+                                    x-text="faq.answer"
+                                ></div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div
+                class="relative overflow-hidden py-14 shadow-[0_16px_40px_-8px_rgba(13,13,13,0.2)] lg:py-16"
+            >
+                <img
+                    src="assets/images/cta-banner.png"
+                    alt="graphy"
+                    class="absolute inset-0 size-full object-cover"
+                />
+                <div class="relative z-1 container text-center">
+                    <img
+                        src="assets/images/circle-star.png"
+                        alt="circle-star"
+                        class="absolute -bottom-16 left-0 -z-1 h-auto w-20 md:w-35 xl:w-65"
+                    />
+                    <img
+                        src="assets/images/circle-half.png"
+                        alt="circle-star"
+                        class="absolute -top-16 right-0 -z-1 h-auto w-20 md:w-35 xl:w-65"
+                    />
+                    <div class="section-heading text-white">
+                        <h2 class="text-white">Couldn't find your answers?</h2>
+                        <p>
+                            Let’s discuss your goals and create a tailored
+                            solution that helps your business grow with
+                            confidence.
+                        </p>
+                    </div>
+                    <div
+                        class="mt-6 flex justify-center gap-2 sm:gap-4 lg:gap-6"
+                    >
+                        <a
+                            href="contact.html"
+                            class="btn btn-secondary px-2.5 whitespace-nowrap sm:px-4.75"
+                            >Contact us
+                            <i
+                                data-lucide="chevron-right"
+                                class="size-5 shrink-0"
+                            ></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer
+            class="border-gray-light mt-auto overflow-hidden border-t bg-white pt-14"
+        >
+            <div class="container">
+                <div
+                    class="flex flex-col justify-between gap-10 pb-10 lg:flex-row lg:items-start"
+                >
+                    <div class="mx-auto shrink-0 lg:mx-0 lg:w-75 xl:w-105">
+                        <div class="space-y-6 text-center lg:text-left">
+                            <a href="index.html" class="flex">
+                                <img
+                                    src="assets/images/logo.svg"
+                                    alt="Logo"
+                                    class="mx-auto w-70 md:w-82 lg:mx-0"
+                                />
+                            </a>
+                            <p>
+                                Helping businesses innovate with strategy,
+                                design, and technology.
+                            </p>
+                            <div
+                                class="border-gray-light flex items-center justify-center gap-4 lg:justify-start lg:border-b lg:pb-6"
+                            >
+                                <a
+                                    href="https://instagram.com/m/https://aetherial-labs-html.vercel.app/"
+                                    target="_blank"
+                                    class="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white"
+                                >
+                                    <i
+                                        data-lucide="instagram"
+                                        class="size-6"
+                                    ></i>
+                                    <span class="sr-only">Instagram</span>
+                                </a>
+                                <a
+                                    href="https://www.facebook.com/sharer/sharer.php?u=https://aetherial-labs-html.vercel.app/"
+                                    target="_blank"
+                                    class="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white"
+                                >
+                                    <i
+                                        data-lucide="facebook"
+                                        class="size-6"
+                                    ></i>
+                                    <span class="sr-only">Facebook</span>
+                                </a>
+                                <a
+                                    href="https://www.linkedin.com/shareArticle?mini=true&url=https://aetherial-labs-html.vercel.app/"
+                                    target="_blank"
+                                    class="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white"
+                                >
+                                    <i
+                                        data-lucide="linkedin"
+                                        class="size-6"
+                                    ></i>
+                                    <span class="sr-only">LinkedIn</span>
+                                </a>
+                                <a
+                                    href="https://twitter.com/intent/tweet?url=https://aetherial-labs-html.vercel.app/&text="
+                                    target="_blank"
+                                    class="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white"
+                                >
+                                    <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        class="size-6"
+                                    >
+                                        <path
+                                            d="M11.7909 2.04175L8.45982 5.84958L5.57965 2.04175H1.4082L6.39242 8.55922L1.66854 13.9584H3.69132L7.33722 9.79248L10.5235 13.9584H14.5917L9.39602 7.08955L13.8126 2.04175H11.7909ZM11.0815 12.7484L3.76892 3.18819H4.97098L12.2016 12.7484H11.0815Z"
+                                            fill="currentColor"
+                                        ></path>
+                                    </svg>
+                                    <span class="sr-only">Twitter</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-12 hidden text-base font-medium lg:block"
+                        >
+                            ©
+                            <span x-text="new Date().getFullYear()"></span>
+                            Aetherial Labs. All rights reserved.
+                        </div>
+                    </div>
+                    <div
+                        class="grid grid-cols-1 gap-10 text-base font-medium sm:grid-cols-3 lg:flex lg:gap-4 xl:gap-6"
+                    >
+                        <div class="space-y-6 lg:w-50">
+                            <div class="text-primary font-semibold">
+                                Contact
+                            </div>
+                            <div class="space-y-4">
+                                <div class="space-y-1">
+                                    <div class="text-black">Email:</div>
+                                    <a
+                                        href="mailto:work@aetherial_labs.com"
+                                        class="hover:text-primary block truncate transition"
+                                        >work@aetherial_labs.com</a
+                                    >
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="text-black">Phone:</div>
+                                    <a
+                                        href="tel:(253) 421-7583"
+                                        class="hover:text-primary transition"
+                                        >+(253) 421-7583</a
+                                    >
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="text-black">Address:</div>
+                                    <div>
+                                        123 Corporate Avenue, Business City
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="text-black">Office Hours:</div>
+                                    <div>Mon–Fri, 9am–6pm</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gray-light hidden w-px shrink-0 lg:inline-block"
+                        ></div>
+                        <div class="space-y-6 lg:w-40 xl:w-50">
+                            <div class="text-primary font-semibold">
+                                Company
+                            </div>
+                            <div class="flex flex-col items-start space-y-4">
+                                <a
+                                    href="about-us.html"
+                                    class="hover:text-primary transition"
+                                    >About Us</a
+                                >
+                                <a
+                                    href="services.html"
+                                    class="hover:text-primary transition"
+                                    >Our Services</a
+                                >
+                                <a
+                                    href="projects.html"
+                                    class="hover:text-primary transition"
+                                    >Projects</a
+                                >
+                                <a
+                                    href="blog.html"
+                                    class="hover:text-primary transition"
+                                    >Blog</a
+                                >
+                                <a
+                                    href="career.html"
+                                    class="hover:text-primary transition"
+                                    >Career</a
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gray-light hidden w-px shrink-0 lg:inline-block"
+                        ></div>
+                        <div class="space-y-6 lg:w-40 xl:w-50">
+                            <div class="text-primary font-semibold">
+                                Support
+                            </div>
+                            <div class="flex flex-col items-start space-y-4">
+                                <a
+                                    href="contact.html"
+                                    class="hover:text-primary transition"
+                                    >Contact</a
+                                >
+                                <a
+                                    href="faq.html"
+                                    class="hover:text-primary transition"
+                                    >FAQs</a
+                                >
+                                <a
+                                    href="privacy-policy.html"
+                                    class="hover:text-primary transition"
+                                    >Privacy Policy</a
+                                >
+                                <a
+                                    href="terms.html"
+                                    class="hover:text-primary transition"
+                                    >Terms & Conditions</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="border-gray-light block border-t py-6 text-center text-base font-medium lg:hidden"
+                >
+                    ©
+                    <span x-text="new Date().getFullYear()"></span>
+                    Aetherial Labs. All rights reserved.
+                </div>
+            </div>
+            <div
+                class="gradient-text -mb-12 hidden overflow-hidden text-center text-[120px]/30 font-bold whitespace-nowrap uppercase opacity-10 lg:block xl:text-[150px]/38 2xl:text-[180px]/45"
+            >
+                Aetherial labs
+            </div>
+        </footer>
+
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        <script src="assets/js/lucide.min.js"></script>
+        <script src="assets/js/collapse.min.js" defer></script>
+        <script src="assets/js/alpine.min.js" defer></script>
+
+        <script>
+            const faqList = {
+                faqs: [
+                    {
+                        id: 1,
+                        question: 'Do you offer revisions?',
+                        answer: 'Yes, we provide revisions based on the scope defined in the agreement. The number of revisions and turnaround time depend on the selected service package.',
+                    },
+                    {
+                        id: 2,
+                        question: 'What payment methods do you accept?',
+                        answer: 'We accept major credit and debit cards, UPI, net banking, and other approved digital payment methods. Payment terms may vary for corporate clients.',
+                    },
+                    {
+                        id: 3,
+                        question: 'What is the project delivery timeline?',
+                        answer: 'Project timelines vary based on scope and requirements. A detailed delivery schedule is shared after requirement analysis and project confirmation.',
+                    },
+                    {
+                        id: 4,
+                        question: 'Do you provide post-delivery support?',
+                        answer: 'Yes, we offer post-delivery support as per the agreed service terms. Ongoing maintenance and support plans are also available.',
+                    },
+                    {
+                        id: 5,
+                        question:
+                            'How do you handle changes or urgent requests?',
+                        answer: 'Change requests and urgent requirements are evaluated based on impact and feasibility. Additional timelines or costs may apply after approval.',
+                    },
+                    {
+                        id: 6,
+                        question:
+                            'Do you sign NDAs or confidentiality agreements?',
+                        answer: 'Yes, we respect client confidentiality and can sign non-disclosure agreements (NDAs) before starting the project, if required.',
+                    },
+                    {
+                        id: 7,
+                        question: 'How do you communicate during the project?',
+                        answer: 'We maintain regular communication through email, calls, or project management tools to ensure transparency and timely updates throughout the project lifecycle.',
+                    },
+                    {
+                        id: 8,
+                        question:
+                            'Can you handle long-term or retainer-based projects?',
+                        answer: 'Yes, we offer flexible engagement models including long-term and retainer-based partnerships tailored to ongoing business needs.',
+                    },
+                ],
+                activeId: 1,
+                toggle(id) {
+                    this.activeId = this.activeId === id ? null : id
+                },
+            }
+
+            function mainFunction() {
+                return {
+                    init() {
+                        this.$nextTick(() => lucide.createIcons())
+                    },
+                }
+            }
+        </script>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "FAQs | Aetherial Labs",
+                "url": "https://aetherial-labs-html.vercel.app/faq.html",
+                "description": "Aetherial Labs is a modern corporate website template for startups, agencies, and tech companies, featuring responsive design, clean UI, and easy customization.",
+                "inLanguage": "en",
+                "image": "https://aetherial-labs-html.vercel.app/assets/images/logo.png",
+                "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "https://aetherial-labs-html.vercel.app/"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "FAQs",
+                            "item": "https://aetherial-labs-html.vercel.app/faq.html"
+                        }
+                    ]
+                }
+            }
+        </script>
+    </body>
+</html>
