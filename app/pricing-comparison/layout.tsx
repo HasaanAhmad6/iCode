@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Pricing Comparison | iCode Ltd",
-  description: "Compare iCode Ltd plans and choose the option that fits your business goals.",
+title: "Pricing | iCode Software House",
+description: "Compare service plans and pricing from iCode Software House, Gujranwala, Pakistan. Transparent pricing for web development and software projects.",
   path: "/pricing-comparison",
 });
 

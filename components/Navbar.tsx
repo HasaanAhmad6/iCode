@@ -8,24 +8,26 @@ type NavbarProps = {
   serviceLinks: string[];
 };
 
-export function Navbar({ serviceLinks }: NavbarProps) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [companyOpen, setCompanyOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const onResize = () => setIsDesktop(window.innerWidth >= 1024);
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  useEffect(() => {
-    if (!isDesktop) return;
-    setMenuOpen(false);
-  }, [isDesktop]);
-
+// Internal component that uses theme (only rendered after client mount)
+function NavbarContent({
+  serviceLinks,
+  menuOpen,
+  setMenuOpen,
+  servicesOpen,
+  setServicesOpen,
+  companyOpen,
+  setCompanyOpen,
+  isDesktop,
+}: {
+  serviceLinks: string[];
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  servicesOpen: boolean;
+  setServicesOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  companyOpen: boolean;
+  setCompanyOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isDesktop: boolean;
+}) {
   return (
     <header className="sticky top-0 z-50 bg-white">
       <div className="container">
@@ -62,7 +64,7 @@ export function Navbar({ serviceLinks }: NavbarProps) {
               <button
                 type="button"
                 className="nav-link flex items-center gap-1.5"
-                onClick={() => !isDesktop && setServicesOpen((prev) => !prev)}
+                onClick={() => !isDesktop && setServicesOpen((prev: boolean) => !prev)}
               >
                 Services
                 <ChevronDown className={`size-4 shrink-0 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
@@ -75,7 +77,7 @@ export function Navbar({ serviceLinks }: NavbarProps) {
                       : "static flex w-full flex-col space-y-3 p-3"
                   }
                 >
-                  {serviceLinks.map((item) => (
+                  {serviceLinks.map((item: string) => (
                     <Link key={item} href="/service-details" className="submenu-nav-link">
                       {item}
                     </Link>
@@ -96,7 +98,7 @@ export function Navbar({ serviceLinks }: NavbarProps) {
               <button
                 type="button"
                 className="nav-link flex items-center gap-1.5"
-                onClick={() => !isDesktop && setCompanyOpen((prev) => !prev)}
+                onClick={() => !isDesktop && setCompanyOpen((prev: boolean) => !prev)}
               >
                 Company
                 <ChevronDown className={`size-4 shrink-0 transition-transform ${companyOpen ? "rotate-180" : ""}`} />
@@ -133,15 +135,68 @@ export function Navbar({ serviceLinks }: NavbarProps) {
             </a>
           </div>
 
-          <button
-            type="button"
-            className="shrink-0 text-black lg:hidden"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            <AlignJustify className="size-5" />
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              className="shrink-0 text-black lg:hidden"
+              onClick={() => setMenuOpen((prev: boolean) => !prev)}
+            >
+              <AlignJustify className="size-5" />
+            </button>
+          </div>
         </div>
       </div>
     </header>
+  );
+}
+
+// Wrapper component that handles mounting and state
+export function Navbar({ serviceLinks }: NavbarProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const onResize = () => setIsDesktop(window.innerWidth >= 1024);
+    onResize();
+    window.addEventListener("resize", onResize);
+    setMounted(true);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+    setMenuOpen(false);
+  }, [isDesktop]);
+
+  // Prevent rendering NavbarContent until client-side hydration is complete
+  if (!mounted) {
+    return (
+      <header className="sticky top-0 z-50 bg-white">
+        <div className="container">
+          <div className="flex items-center justify-between gap-5 border-b border-black/20 py-5 lg:py-0">
+            <Link href="/" className="shrink-0 text-black/50 hover:text-black">
+              <img src="/assets/images/logo.svg" alt="Logo" className="w-50 sm:w-60 xl:w-70" />
+            </Link>
+            <div />
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  return (
+    <NavbarContent
+      serviceLinks={serviceLinks}
+      menuOpen={menuOpen}
+      setMenuOpen={setMenuOpen}
+      servicesOpen={servicesOpen}
+      setServicesOpen={setServicesOpen}
+      companyOpen={companyOpen}
+      setCompanyOpen={setCompanyOpen}
+      isDesktop={isDesktop}
+    />
   );
 }

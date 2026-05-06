@@ -1,5 +1,38 @@
+/* ===================================== */
+/* COLOR PALETTE - CENTRAL COLOR SYSTEM */
+/* ===================================== */
+/* 
+  USAGE: Update colors here and all components will automatically use the new colors
+  All hardcoded colors throughout the app should eventually reference these variables
+*/
+:root {
+  /* PRIMARY COLORS */
+  --color-primary: #880808;
+  --color-primary-light: #fceeea;
+  
+  /* SECONDARY COLORS */
+  --color-secondary: #000a23;
+  
+  /* NEUTRAL COLORS */
+  --color-white: #fff;
+  --color-black: #12151e;
+  --color-gray: #67788f;
+  --color-gray-light: #e0e5eb;
+  --color-gray-100: oklch(96.7% .003 264.542);
+  --color-gray-200: oklch(92.8% .006 264.531);
+  
+  /* BACKGROUND COLORS */
+  --color-background: #fafafa;
+  
+  /* SHADOWS - RGBA COLORS */
+  --color-shadow-dark: #0d0d0d;
+  --color-shadow-neutral: #585c5f;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--color-background);
+  color: var(--color-black);
 }

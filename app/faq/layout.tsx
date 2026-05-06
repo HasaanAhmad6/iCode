@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "FAQs | iCode Ltd",
-  description: "Find answers to common questions about services, process, support, and collaboration.",
+title: "FAQs | iCode Software House",
+description: "Frequently asked questions about iCode Software House services, pricing, and process — software development company in Gujranwala, Pakistan.",
   path: "/faq",
 });
 
