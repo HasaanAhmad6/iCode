@@ -1,15 +1,13 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
   AtSign,
   Clock3,
-  Copy,
   Globe,
   Share2,
 } from "lucide-react";
+import { BlogDetailsClient } from "@/components/blog-details/blog-detailsClient";
+import { CopyLinkButton } from "@/components/blog-details/CopyLinkButton";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import {
@@ -20,33 +18,9 @@ import {
 } from "@/data/blog-details";
 
 export default function BlogDetailsPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const copyLink = async () => {
-    await navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
-
   return (
     <>
-      <div className="relative">
-        {isLoading && (
-          <div
-            id="preloader"
-            className="fixed inset-0 z-60 flex h-dvh w-full items-center justify-center bg-white"
-          >
-            <span className="from-background to-background absolute inset-0 animate-pulse bg-linear-to-br via-white" />
-            <div className="border-t-gray/70 border-b-gray-light absolute top-1/2 left-1/2 grid size-10 -translate-1/2 animate-spin place-content-center rounded-full border-y-8 sm:size-14" />
-          </div>
-        )}
-      </div>
+      <BlogDetailsClient />
 
       <Navbar serviceLinks={blogDetailsServiceLinks} />
 
@@ -153,14 +127,7 @@ export default function BlogDetailsPage() {
               <div className="border-gray-light flex flex-col justify-between gap-6 border-t pt-6 sm:flex-row sm:items-center">
                 <h3>Share this post</h3>
                 <div className="flex items-center gap-2.5 sm:gap-4">
-                  <button
-                    type="button"
-                    onClick={copyLink}
-                    className="border-gray-light bg-background inline-flex items-center gap-2 rounded-lg border px-3 py-2.5 text-base/5 font-medium whitespace-nowrap text-black hover:bg-white lg:p-3"
-                  >
-                    <Copy className="size-5 shrink-0" />
-                    <span>{copied ? "Copied" : "Copy link"}</span>
-                  </button>
+                  <CopyLinkButton />
                   <a href="https://instagram.com" target="_blank" rel="noreferrer" className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"><AtSign className="size-5 lg:size-6" /></a>
                   <a href="https://facebook.com" target="_blank" rel="noreferrer" className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"><Share2 className="size-5 lg:size-6" /></a>
                   <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"><Globe className="size-5 lg:size-6" /></a>

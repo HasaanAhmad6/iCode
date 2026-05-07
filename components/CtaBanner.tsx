@@ -1,10 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { ContactModal } from "@/components/ContactModal";
 
-type CtaBannerProps = {
-  onQuoteClick: () => void;
-};
-
-export function CtaBanner({ onQuoteClick }: CtaBannerProps) {
+export function CtaBanner() {
+  const [contactModal, setContactModal] = useState(false);
   return (
     <div className="relative overflow-hidden py-14 shadow-[0_16px_40px_-8px_rgba(13,13,13,0.2)] lg:py-16">
       <img src="/assets/images/cta-banner.png" alt="graphy" className="absolute inset-0 size-full object-cover" />
@@ -30,7 +31,7 @@ export function CtaBanner({ onQuoteClick }: CtaBannerProps) {
           <button
             type="button"
             className="btn btn-secondary px-2.5 whitespace-nowrap sm:px-4.75"
-            onClick={onQuoteClick}
+            onClick={() => setContactModal(true)}
           >
             Get a quote
           </button>
@@ -42,6 +43,7 @@ export function CtaBanner({ onQuoteClick }: CtaBannerProps) {
           </Link>
         </div>
       </div>
+      <ContactModal open={contactModal} onClose={() => setContactModal(false)} />
     </div>
   );
 }

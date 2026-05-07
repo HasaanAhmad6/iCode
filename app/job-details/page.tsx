@@ -1,10 +1,8 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { BadgeCheck, Briefcase, Clock3, MapPin } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { JobDetailsClient } from "@/components/job-details/job-detailsClient";
 import {
   jobDetailsBenefits,
   jobDetailsHero,
@@ -15,26 +13,9 @@ import {
 } from "@/data/job-details";
 
 export default function JobDetailsPage() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
-      <div className="relative">
-        {isLoading && (
-          <div
-            id="preloader"
-            className="fixed inset-0 z-60 flex h-dvh w-full items-center justify-center bg-white"
-          >
-            <span className="from-background to-background absolute inset-0 animate-pulse bg-linear-to-br via-white" />
-            <div className="border-t-gray/70 border-b-gray-light absolute top-1/2 left-1/2 grid size-10 -translate-1/2 animate-spin place-content-center rounded-full border-y-8 sm:size-14" />
-          </div>
-        )}
-      </div>
+      <JobDetailsClient />
 
       <Navbar serviceLinks={jobDetailsServiceLinks} />
 
@@ -128,7 +109,7 @@ export default function JobDetailsPage() {
             className="border-gray-light shrink-0 scroll-mt-16 space-y-8 rounded-md border px-4 py-6 shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)] sm:p-8 lg:w-100 xl:w-139.25 xl:space-y-12 xl:p-12"
           >
             <h2 className="text-2xl/8 lg:text-[32px]/10">Application Form</h2>
-            <form className="space-y-6 xl:space-y-8" onSubmit={(event) => event.preventDefault()}>
+            <form className="space-y-6 xl:space-y-8">
               <div className="flex flex-col gap-2.5 lg:gap-4">
                 <label htmlFor="name">Full name</label>
                 <input id="name" type="text" placeholder="Enter your full name" className="form-input" />

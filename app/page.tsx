@@ -1,13 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import type { Swiper as SwiperType } from "swiper";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import {
   BadgeCheck,
-  ChevronLeft,
   ChevronRight,
   Code,
   Layers,
@@ -15,46 +8,23 @@ import {
   Palette,
   Sigma,
 } from "lucide-react";
-import { CtaBanner } from "@/components/CtaBanner";
-import { ContactModal } from "@/components/ContactModal";
 import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { PricingPlans } from "@/components/PricingPlans";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
-import {
-  homeClientLogos,
-  homeProjects,
-  homeServiceLinks,
-  homeTestimonials,
-} from "@/data/home";
-
-import "swiper/css";
-import "swiper/css/navigation";
+import { HomePreloader } from "@/components/home/HomePreloader";
+import { ProjectsSwiper } from "@/components/home/ProjectsSwiper";
+import { ClientsSwiper } from "@/components/home/ClientsSwiper";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { HomeContactModal } from "@/components/home/HomeContactModal";
+import { homeServiceLinks } from "@/data/home";
 
 export default function HomePage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [contactModal, setContactModal] = useState(false);
-  const [testimonialsSwiper, setTestimonialsSwiper] = useState<SwiperType | null>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>
-      <div className="relative">
-        {isLoading && (
-          <div
-            id="preloader"
-            className="fixed inset-0 z-60 flex h-dvh w-full items-center justify-center bg-white"
-          >
-            <span className="from-background to-background absolute inset-0 animate-pulse bg-linear-to-br via-white" />
-            <div className="border-t-gray/70 border-b-gray-light absolute top-1/2 left-1/2 grid size-10 -translate-1/2 animate-spin place-content-center rounded-full border-y-8 sm:size-14" />
-          </div>
-        )}
-      </div>
+      <HomePreloader />
 
       <Navbar serviceLinks={homeServiceLinks} />
 
@@ -188,49 +158,7 @@ export default function HomePage() {
               <div>Our projects</div>
               <h2>Work that drives real results</h2>
             </div>
-            <Swiper
-              modules={[Autoplay]}
-              className="project-swiper"
-              spaceBetween={16}
-              slidesPerView={1}
-              breakpoints={{
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 2, spaceBetween: 24 },
-                1280: { slidesPerView: 3 },
-              }}
-              autoplay={{ delay: 2000, disableOnInteraction: false }}
-            >
-              {homeProjects.map((project) => (
-                <SwiperSlide key={project.id}>
-                  <div className="border-gray-light group relative flex h-full flex-col gap-4 overflow-hidden rounded-lg border bg-white p-4 lg:p-6">
-                    <div className="space-y-2 sm:space-y-4">
-                      <h3 className="text-xl font-medium text-black lg:text-2xl">{project.title}</h3>
-                      <p className="line-clamp-2">{project.description}</p>
-                    </div>
-                    <div className="relative mt-auto h-60 overflow-hidden rounded-lg sm:h-75 xl:h-105">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        loading="lazy"
-                        className="size-full object-cover"
-                      />
-                    </div>
-                    <div className="flex items-center justify-between gap-2">
-                      <Link
-                        href="/projects"
-                        className="h4 text-gray relative z-1 line-clamp-1 transition hover:text-black lg:text-lg"
-                      >
-                        {project.category}
-                      </Link>
-                      <div className="bg-primary-light text-primary ring-primary/20 shrink-0 rounded p-1 text-xs font-medium ring-1 sm:px-2 sm:text-sm">
-                        {project.tag}
-                      </div>
-                    </div>
-                    <Link href={project.url} className="absolute inset-0" aria-label="View project" />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            <ProjectsSwiper />
             <div className="text-center">
               <Link href="/projects" className="btn">
                 View all projects
@@ -246,30 +174,7 @@ export default function HomePage() {
               <h2>Trusted by leading brands worldwide</h2>
             </div>
           </div>
-          <Swiper
-            modules={[Autoplay]}
-            className="clients-swiper pt-12! pb-14! lg:pb-16!"
-            slidesPerView={2}
-            spaceBetween={16}
-            loop
-            centeredSlides
-            speed={1000}
-            autoplay={{ delay: 1000, disableOnInteraction: false }}
-            breakpoints={{
-              768: { slidesPerView: 4, spaceBetween: 16 },
-              1024: { slidesPerView: 5, spaceBetween: 30 },
-              1280: { slidesPerView: 6, spaceBetween: 30 },
-              1568: { slidesPerView: 8, spaceBetween: 48 },
-            }}
-          >
-            {homeClientLogos.map((logo, index) => (
-              <SwiperSlide key={`${logo}-${index}`}>
-                <div className="border-gray-light flex justify-center rounded-lg border bg-white px-2 py-6 shadow-[0_16px_32px_-12px_rgba(88,92,95,0.1)]">
-                  <img src={logo} alt="Logo" className="w-full max-w-34" />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <ClientsSwiper />
         </div>
 
         <WhyChooseUs titleClassName="text-center!" />
@@ -296,88 +201,14 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="bg-background border-gray-light relative overflow-hidden border-y-2 py-14 lg:py-16">
-          <img src="/assets/images/quote.png" alt="Quote" width={160} height={160} className="absolute top-0 left-0 w-40" />
-          <div className="container flex flex-col gap-8 lg:flex-row xl:gap-20">
-            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:gap-8 lg:flex-col xl:max-w-115">
-              <div className="section-heading text-left">
-                <div>Testimonials</div>
-                <h2>What our clients say</h2>
-                <p className="max-w-115">
-                  We&apos;ve helped global brands create meaningful impact. Here&apos;s what our
-                  clients share about working with us.
-                </p>
-              </div>
-              <div className="mt-auto flex gap-4 lg:gap-6">
-                <button
-                  type="button"
-                  onClick={() => testimonialsSwiper?.slidePrev()}
-                  className="border-gray-light grid size-9 shrink-0 place-content-center rounded-lg border bg-white text-black transition hover:bg-black hover:text-white lg:size-11"
-                >
-                  <ChevronLeft className="size-5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => testimonialsSwiper?.slideNext()}
-                  className="border-gray-light grid size-9 shrink-0 place-content-center rounded-lg border bg-white text-black transition hover:bg-black hover:text-white lg:size-11"
-                >
-                  <ChevronRight className="size-5" />
-                </button>
-              </div>
-            </div>
-            <div className="relative grow lg:w-[calc(100%-540px)]">
-              <span className="sm:from-background absolute inset-y-0 right-0 z-2 hidden w-1/4 translate-x-1 bg-linear-to-l sm:to-transparent lg:block" />
-              <Swiper
-                modules={[Autoplay]}
-                className="testimonials-swiper grid! px-px!"
-                onSwiper={setTestimonialsSwiper}
-                spaceBetween={16}
-                speed={1000}
-                loop
-                autoplay={{ delay: 2000, disableOnInteraction: false }}
-                slidesPerView={1}
-                breakpoints={{
-                  640: { slidesPerView: 2 },
-                  1024: { slidesPerView: 1.5, spaceBetween: 24 },
-                  1280: { slidesPerView: 2.5 },
-                }}
-              >
-                {homeTestimonials.map((item) => (
-                  <SwiperSlide key={item.id}>
-                    <div className="border-gray-light flex h-full flex-col gap-8 rounded-lg border bg-white p-4 lg:gap-14 lg:p-6">
-                      <div className="grow space-y-4 lg:min-h-78">
-                        <p>{item.company}</p>
-                        <h4 className="mt-2">{item.subject}</h4>
-                        <p>{item.message}</p>
-                      </div>
-                      <div className="mt-auto flex items-center gap-4">
-                        <div className="size-14 shrink-0 overflow-hidden rounded-full">
-                          <img
-                            src={item.person_image}
-                            alt="person image"
-                            className="size-full object-cover object-top"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <h4>{item.name}</h4>
-                          <p className="text-base/6">{item.designation}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </div>
-        </div>
+        <TestimonialsSection />
 
         <PricingPlans />
 
-        <CtaBanner onQuoteClick={() => setContactModal(true)} />
+        <HomeContactModal />
       </div>
 
       <Footer />
-      <ContactModal open={contactModal} onClose={() => setContactModal(false)} />
     </>
   );
 }

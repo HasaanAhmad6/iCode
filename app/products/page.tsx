@@ -1,37 +1,16 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { CtaBanner } from "@/components/CtaBanner";
-import { ContactModal } from "@/components/ContactModal";
 import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { ProductsClient } from "@/components/products/productsClient";
 import { productsList, productsServiceLinks } from "@/data/products";
 
 export default function ProductsPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [contactModal, setContactModal] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>
-      {/* Preloader */}
-      <div className="relative">
-        {isLoading && (
-          <div
-            id="preloader"
-            className="fixed inset-0 z-60 flex h-dvh w-full items-center justify-center bg-white"
-          >
-            <span className="from-background to-background absolute inset-0 animate-pulse bg-linear-to-br via-white" />
-            <div className="border-t-gray/70 border-b-gray-light absolute top-1/2 left-1/2 grid size-10 -translate-1/2 animate-spin place-content-center rounded-full border-y-8 sm:size-14" />
-          </div>
-        )}
-      </div>
+      <ProductsClient />
 
       <Navbar serviceLinks={productsServiceLinks} />
 
@@ -147,11 +126,10 @@ export default function ProductsPage() {
         </div>
 
         {/* CTA Banner */}
-        <CtaBanner onQuoteClick={() => setContactModal(true)} />
+        <CtaBanner />
       </div>
 
       <Footer />
-      <ContactModal open={contactModal} onClose={() => setContactModal(false)} />
     </>
   );
 }

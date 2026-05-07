@@ -1,12 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import {
   BadgeCheck,
-  ChevronRight,
   Layers,
   LayoutPanelLeft,
   MonitorSmartphone,
@@ -14,30 +8,22 @@ import {
   UserSearch,
   Workflow,
 } from "lucide-react";
-import { ContactModal } from "@/components/ContactModal";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { PricingPlans } from "@/components/PricingPlans";
+import { ServiceDetailsPreloader } from "@/components/service-details/ServiceDetailsPreloader";
+import { QuoteButton } from "@/components/service-details/QuoteButton";
+import { RelatedProjectsSwiper } from "@/components/service-details/RelatedProjectsSwiper";
 import {
   serviceDetailsFaqs,
   serviceDetailsImpact,
   serviceDetailsOfferings,
   serviceDetailsProblems,
-  serviceDetailsProjects,
   serviceDetailsServiceLinks,
 } from "@/data/service-details";
 
-import "swiper/css";
-
 export default function ServiceDetailsPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [contactModal, setContactModal] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
 
   const iconMap = {
     "user-search": <UserSearch className="size-5 lg:size-6" />,
@@ -50,17 +36,7 @@ export default function ServiceDetailsPage() {
 
   return (
     <>
-      <div className="relative">
-        {isLoading && (
-          <div
-            id="preloader"
-            className="fixed inset-0 z-60 flex h-dvh w-full items-center justify-center bg-white"
-          >
-            <span className="from-background to-background absolute inset-0 animate-pulse bg-linear-to-br via-white" />
-            <div className="border-t-gray/70 border-b-gray-light absolute top-1/2 left-1/2 grid size-10 -translate-1/2 animate-spin place-content-center rounded-full border-y-8 sm:size-14" />
-          </div>
-        )}
-      </div>
+      <ServiceDetailsPreloader />
 
       <Navbar serviceLinks={serviceDetailsServiceLinks} />
 
@@ -89,10 +65,7 @@ export default function ServiceDetailsPage() {
                 feel intuitive and drive measurable business impact.
               </p>
             </div>
-            <button type="button" className="btn" onClick={() => setContactModal(true)}>
-              Get a quote
-              <ChevronRight className="size-5" />
-            </button>
+            <QuoteButton />
           </div>
           <div className="grid grow gap-4 sm:grid-cols-2">
             <div className="mr-8 h-40 overflow-hidden rounded-lg sm:mr-0 sm:mb-8 sm:h-70">
@@ -186,39 +159,7 @@ export default function ServiceDetailsPage() {
                 View all projects
               </Link>
             </div>
-            <Swiper
-              modules={[Autoplay]}
-              className="project-swiper px-px!"
-              spaceBetween={16}
-              speed={1000}
-              loop
-              autoplay={{ delay: 2000, disableOnInteraction: false }}
-              slidesPerView={1}
-              breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 2, spaceBetween: 24 }, 1280: { slidesPerView: 3 } }}
-            >
-              {serviceDetailsProjects.map((project) => (
-                <SwiperSlide key={project.id}>
-                  <div className="border-gray-light group relative flex h-full flex-col gap-4 overflow-hidden rounded-lg border bg-white p-4 lg:p-6">
-                    <div className="space-y-2 sm:space-y-4">
-                      <h3 className="text-xl font-medium text-black lg:text-2xl">{project.title}</h3>
-                      <p className="line-clamp-2">{project.description}</p>
-                    </div>
-                    <div className="relative mt-auto h-60 overflow-hidden rounded-lg sm:h-75 xl:h-105">
-                      <img src={project.image} alt={project.title} loading="lazy" className="size-full object-cover" />
-                    </div>
-                    <div className="flex items-center justify-between gap-2">
-                      <Link href="/projects" className="h4 text-gray relative z-1 line-clamp-1 transition hover:text-black lg:text-lg">
-                        {project.category}
-                      </Link>
-                      <div className="bg-primary-light text-primary ring-primary/20 shrink-0 rounded p-1 text-xs font-medium ring-1 sm:px-2 sm:text-sm">
-                        {project.tag}
-                      </div>
-                    </div>
-                    <Link href={project.url} className="absolute inset-0" aria-label="View project" />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            <RelatedProjectsSwiper />
           </div>
         </div>
 
@@ -272,7 +213,6 @@ export default function ServiceDetailsPage() {
       </div>
 
       <Footer />
-      <ContactModal open={contactModal} onClose={() => setContactModal(false)} />
     </>
   );
 }
