@@ -60,7 +60,7 @@ export const termsSections = [
   {
     title: "1. Acceptance of Terms",
     paragraphs: [
-      "By accessing or using Aetherial Lab’s website, you agree to these Terms & Conditions.",
+      "By accessing or using iCode's website, you agree to these Terms & Conditions.",
     ],
   },
   {

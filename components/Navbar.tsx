@@ -32,8 +32,8 @@ function NavbarContent({
     <header className="sticky top-0 z-50 bg-white">
       <div className="container">
         <div className="flex items-center justify-between gap-5 border-b border-black/20 py-5 lg:py-0">
-          <Link href="/" className="shrink-0 pl-4 sm:pl-6 text-black/50 hover:text-black">
-            <img src="/assets/images/logo.svg" alt="Logo" className="w-36 sm:w-44 xl:w-52" />
+          <Link href="/" className="shrink-0 pl-4 sm:pl-6 text-black/50 hover:text-black overflow-visible">
+            <img src="/assets/images/logo.svg" alt="Logo" className="w-36 sm:w-44 xl:w-52 overflow-visible" />
           </Link>
 
           {menuOpen && (
@@ -48,8 +48,8 @@ function NavbarContent({
           <div
             className={`menu fixed inset-y-0 left-0 z-50 flex w-70 transform flex-col gap-1 overflow-y-auto bg-white p-4 transition-transform duration-300 sm:w-80 lg:static lg:z-auto lg:w-auto lg:transform-none lg:flex-row lg:items-center lg:gap-6 lg:overflow-visible lg:bg-transparent lg:p-0 xl:gap-10 ${menuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
           >
-            <Link href="/" className="border-gray-light mb-2 inline-block shrink-0 border-b-4 border-double pt-3 pb-5 lg:hidden">
-              <img src="/assets/images/logo.svg" alt="Logo" className="w-36 sm:w-44" />
+            <Link href="/" className="border-gray-light mb-2 inline-block shrink-0 border-b-4 border-double pt-3 pb-5 lg:hidden overflow-visible">
+              <img src="/assets/images/logo.svg" alt="Logo" className="w-36 sm:w-44 overflow-visible" />
             </Link>
 
             <Link href="/" className="nav-link active">
@@ -130,8 +130,8 @@ function NavbarContent({
             <Link href="/contact" className="nav-link">
               Contact
             </Link>
-            <a href="tel:(253) 421-7583" className="btn mt-2 pl-3">
-              <Phone className="size-5" /> (253) 421-7583
+            <a href="tel:+92-307-6256808" className="btn mt-2 pl-3">
+              <Phone className="size-5" /> +92-307-6256808
             </a>
           </div>
 

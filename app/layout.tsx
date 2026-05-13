@@ -83,11 +83,11 @@ const localBusinessJsonLd = {
   description:
     "Professional web development, mobile app development, and custom software solutions in Gujranwala, Pakistan.",
   url: SITE_URL,
-  telephone: "+92-300-0000000",
-  email: "contact@icodeltd.com",
+  telephone: "+92-307-6256808",
+  email: "info@icodeltd.com",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Your Street Address",
+    streetAddress: "Master City, Gujranwala, Punjab, Pakistan",
     addressLocality: "Gujranwala",
     addressRegion: "Punjab",
     postalCode: "52250",
@@ -106,7 +106,7 @@ const localBusinessJsonLd = {
   ],
   sameAs: [
     "https://www.facebook.com/icodesoftwarehouse",
-    "https://www.linkedin.com/company/icodesoftwarehouse",
+    "https://www.linkedin.com/company/icodeltd",
     "https://www.instagram.com/icodesoftwarehouse",
   ],
 };

@@ -130,7 +130,7 @@ export default function BlogDetailsPage() {
                   <CopyLinkButton />
                   <a href="https://instagram.com" target="_blank" rel="noreferrer" className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"><AtSign className="size-5 lg:size-6" /></a>
                   <a href="https://facebook.com" target="_blank" rel="noreferrer" className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"><Share2 className="size-5 lg:size-6" /></a>
-                  <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"><Globe className="size-5 lg:size-6" /></a>
+                  <a href="https://www.linkedin.com/company/icodeltd" target="_blank" rel="noreferrer" className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"><Globe className="size-5 lg:size-6" /></a>
                   <a href="https://twitter.com" target="_blank" rel="noreferrer" className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"><AtSign className="size-5 lg:size-6" /></a>
                 </div>
               </div>

@@ -18,6 +18,7 @@ import { ProjectsSwiper } from "@/components/home/ProjectsSwiper";
 import { ClientsSwiper } from "@/components/home/ClientsSwiper";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { HomeContactModal } from "@/components/home/HomeContactModal";
+import { HomeCaseStudiesSection } from "@/components/home/HomeCaseStudiesSection";
 import { homeServiceLinks } from "@/data/home";
 
 export default function HomePage() {
@@ -166,6 +167,8 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+        <HomeCaseStudiesSection />
 
         <div className="border-gray/20 border-y bg-[#FAFAFA] pt-14 lg:pt-16">
           <div className="container">

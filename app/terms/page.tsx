@@ -40,13 +40,13 @@ export default function TermsPage() {
           </div>
 
           <a
-            href="mailto:work@aetheriallabs.com"
+            href="mailto:info@icodeltd.com"
             className="text-primary mt-6 flex items-center gap-2 transition hover:underline hover:underline-offset-2"
           >
             <span className="bg-primary/5 border-primary/20 grid size-8 shrink-0 place-content-center rounded-lg border">
               <Mail className="size-4 shrink-0" />
             </span>
-            <span>work@aetheriallabs.com</span>
+            <span>info@icodeltd.com</span>
           </a>
         </div>
       </div>

@@ -19,7 +19,7 @@ export function Footer() {
                 <a href="https://facebook.com" target="_blank" rel="noreferrer" className="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white">
                   <Share2 className="size-6" />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white">
+                <a href="https://www.linkedin.com/company/icodeltd" target="_blank" rel="noreferrer" className="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white">
                   <Globe className="size-6" />
                 </a>
                 <a href="https://twitter.com" target="_blank" rel="noreferrer" className="border-gray-light hover:bg-primary hover:border-primary grid size-10 place-content-center rounded-lg border hover:text-white">
@@ -37,14 +37,14 @@ export function Footer() {
               <div className="space-y-4">
                 <div className="space-y-1">
                   <div className="text-black">Email:</div>
-                  <a href="mailto:work@aetherial_labs.com" className="hover:text-primary block truncate transition">
-                    work@aetherial_labs.com
+                  <a href="mailto:info@icodeltd.com" className="hover:text-primary block truncate transition">
+                    info@icodeltd.com
                   </a>
                 </div>
                 <div className="space-y-1">
                   <div className="text-black">Phone:</div>
-                  <a href="tel:(253) 421-7583" className="hover:text-primary transition">
-                    +(253) 421-7583
+                  <a href="tel:+92-307-6256808" className="hover:text-primary transition">
+                    +92-307-6256808
                   </a>
                 </div>
               </div>

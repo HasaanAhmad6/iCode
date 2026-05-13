@@ -42,23 +42,7 @@ export default function TeamPage() {
                   </div>
                   <div className="ml-auto flex gap-2 duration-300 group-hover:translate-x-0 sm:translate-x-full 2xl:gap-4">
                     <a
-                      href="https://instagram.com/m/https://aetherial-labs-html.vercel.app/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-primary/5 hover:bg-primary text-primary ring-primary/20 grid size-8 place-content-center rounded-lg ring-1 ring-inset transition hover:text-white lg:size-10"
-                    >
-                      <AtSign className="size-4 lg:size-6" />
-                    </a>
-                    <a
-                      href="https://www.facebook.com/sharer/sharer.php?u=https://aetherial-labs-html.vercel.app/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-primary/5 hover:bg-primary text-primary ring-primary/20 grid size-8 place-content-center rounded-lg ring-1 ring-inset transition hover:text-white lg:size-10"
-                    >
-                      <Share2 className="size-4 lg:size-6" />
-                    </a>
-                    <a
-                      href="https://www.linkedin.com/shareArticle?mini=true&url=https://aetherial-labs-html.vercel.app/"
+                      href="https://www.linkedin.com/company/icodeltd"
                       target="_blank"
                       rel="noreferrer"
                       className="bg-primary/5 hover:bg-primary text-primary ring-primary/20 grid size-8 place-content-center rounded-lg ring-1 ring-inset transition hover:text-white lg:size-10"

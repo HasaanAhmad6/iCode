@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AtSign, Globe, Share2 } from "lucide-react";
+import { AtSign, Calendar, Globe, Share2 } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { ConsultationBookingForm } from "@/components/ConsultationBookingForm";
 import {
   contactBudgets,
   contactInterests,
@@ -55,19 +56,19 @@ export default function ContactPage() {
                 <div className="space-y-2 lg:space-y-3">
                   <div className="text-black">Email:</div>
                   <a
-                    href="mailto:work@aetheriallabs.com"
+                    href="mailto:info@icodeltd.com"
                     className="hover:text-primary inline-block text-lg/6 transition lg:text-xl/7"
                   >
-                    work@aetheriallabs.com
+                    info@icodeltd.com
                   </a>
                 </div>
                 <div className="space-y-2 lg:space-y-3">
                   <div className="text-black">Phone:</div>
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+92-307-6256808"
                     className="hover:text-primary inline-block text-lg/6 transition lg:text-xl/7"
                   >
-                    +1 234 567 890
+                    +92-307-6256808
                   </a>
                 </div>
                 <div className="space-y-2 lg:space-y-3">
@@ -78,7 +79,7 @@ export default function ContactPage() {
                     rel="noreferrer"
                     className="hover:text-primary inline-block text-lg/6 transition lg:text-xl/7"
                   >
-                    123 Corporate Avenue, Business City
+                    Master City, Gujranwala, Punjab, Pakistan
                   </a>
                 </div>
                 <div className="space-y-2 lg:space-y-3">
@@ -89,25 +90,7 @@ export default function ContactPage() {
                   <div className="text-black">Socials</div>
                   <div className="flex gap-2.5 sm:gap-4">
                     <a
-                      href="https://instagram.com/m/https://aetherial-labs-html.vercel.app/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"
-                    >
-                      <AtSign className="size-5 lg:size-6" />
-                      <span className="sr-only">Instagram</span>
-                    </a>
-                    <a
-                      href="https://www.facebook.com/sharer/sharer.php?u=https://aetherial-labs-html.vercel.app/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"
-                    >
-                      <Share2 className="size-5 lg:size-6" />
-                      <span className="sr-only">Facebook</span>
-                    </a>
-                    <a
-                      href="https://www.linkedin.com/shareArticle?mini=true&url=https://aetherial-labs-html.vercel.app/"
+                      href="https://www.linkedin.com/company/icodeltd"
                       target="_blank"
                       rel="noreferrer"
                       className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"
@@ -116,13 +99,13 @@ export default function ContactPage() {
                       <span className="sr-only">LinkedIn</span>
                     </a>
                     <a
-                      href="https://twitter.com/intent/tweet?url=https://aetherial-labs-html.vercel.app/&text="
+                      href="https://calendly.com/icodelimited/idea-discussion"
                       target="_blank"
                       rel="noreferrer"
                       className="border-gray-light bg-background hover:bg-primary hover:border-primary grid size-9 place-content-center rounded-lg border hover:text-white lg:size-10"
                     >
-                      <AtSign className="size-5 lg:size-6" />
-                      <span className="sr-only">Twitter</span>
+                      <Calendar className="size-5 lg:size-6" />
+                      <span className="sr-only">Schedule a call</span>
                     </a>
                   </div>
                 </div>
@@ -229,6 +212,25 @@ export default function ContactPage() {
               <p className="text-center text-base/6">Our team typically responds within 1 business day.</p>
             </div>
           </form>
+        </div>
+      </div>
+
+      {/* Consultation Booking Section */}
+      <div className="border-gray-light border-t bg-[#FAFAFA] py-14 lg:py-16">
+        <div className="container">
+          <div className="mx-auto max-w-262 space-y-8 lg:space-y-12">
+            <div className="section-heading text-center">
+              <div>Save time</div>
+              <h2>Book a Free 30-Minute Consultation</h2>
+              <p className="mx-auto sm:max-w-md">
+                Schedule a call with one of our experts to discuss your project, timeline, and budget. No commitment required.
+              </p>
+            </div>
+
+            <div className="flex justify-center">
+              <ConsultationBookingForm />
+            </div>
+          </div>
         </div>
       </div>
 

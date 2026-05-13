@@ -59,6 +59,7 @@ export const sitemapRoutes = [
   "/blog",
   "/blog-details",
   "/career",
+  "/case-studies",
   "/contact",
   "/faq",
   "/job-details",
