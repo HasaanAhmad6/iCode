@@ -4,9 +4,10 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { BlogClient } from "@/components/blog/blogClient";
 import { BlogFilter } from "@/components/blog/BlogFilter";
-import { blogFeaturedPost, blogServiceLinks } from "@/data/blog";
+import { blogServiceLinks, blogPosts } from "@/data/blog";
 
 export default function BlogPage() {
+  const featuredPost = blogPosts[0];
 
   return (
     <>
@@ -30,7 +31,7 @@ export default function BlogPage() {
           <div className="container">
             <div className="relative h-100 overflow-hidden rounded-[10px] lg:h-116">
               <img
-                src={blogFeaturedPost.image}
+                src={featuredPost.image}
                 alt="Blog img"
                 className="size-full object-cover object-top"
                 loading="lazy"
@@ -40,16 +41,16 @@ export default function BlogPage() {
                   href="/blog"
                   className="text-primary hover:bg-primary bg-primary-light border-primary/20 mb-4 rounded border px-2 py-1 text-sm/6.5 font-semibold backdrop-blur-[10px] hover:text-white"
                 >
-                  {blogFeaturedPost.category}
+                  {featuredPost.category}
                 </Link>
                 <h2 className="mb-4 line-clamp-2 text-white lg:mb-6">
-                  <Link href="/blog-details" className="transition hover:opacity-80">
-                    {blogFeaturedPost.title}
+                  <Link href={`/blog/${featuredPost.slug}`} className="transition hover:opacity-80">
+                    {featuredPost.title}
                   </Link>
                 </h2>
-                <p className="line-clamp-3">{blogFeaturedPost.description}</p>
+                <p className="line-clamp-3">{featuredPost.description}</p>
                 <Link
-                  href="/blog-details"
+                  href={`/blog/${featuredPost.slug}`}
                   className="text-gray-light group mt-4 inline-flex items-center gap-2 text-base/6"
                 >
                   Read insight

@@ -5,6 +5,7 @@ import { CtaBanner } from "@/components/CtaBanner";
 import { Counter } from "@/components/Counter";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { SITE_URL } from "@/lib/seo";
 import { CaseStudyPreloader } from "@/components/case-study/CaseStudyPreloader";
 import {
   caseStudies,
@@ -32,6 +33,59 @@ export default async function CaseStudyDetailPage({
 
   return (
     <>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: `${cs.client} Case Study`,
+          description: cs.tagline,
+          image: cs.heroImage,
+          datePublished: new Date().toISOString().split("T")[0],
+          author: {
+            "@type": "Organization",
+            name: "iCode Software House",
+            url: SITE_URL,
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "iCode Software House",
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}/assets/images/logo.svg`,
+            },
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `${SITE_URL}/case-studies/${cs.slug}`,
+          },
+        })}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: SITE_URL,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Case Studies",
+              item: `${SITE_URL}/case-studies`,
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: `${cs.client} Case Study`,
+              item: `${SITE_URL}/case-studies/${cs.slug}`,
+            },
+          ],
+        })}
+      </script>
       <CaseStudyPreloader />
 
       <Navbar serviceLinks={caseStudyServiceLinks} />

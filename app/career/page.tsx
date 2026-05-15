@@ -13,11 +13,11 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { VideoModal } from "@/components/career/VideoModal";
 import {
-  careerJobs,
   careerLifeAtItems,
   careerServiceLinks,
   careerWhyWorkItems,
 } from "@/data/career";
+import { jobs } from "@/data/job-details";
 
 export default function CareerPage() {
 
@@ -129,7 +129,7 @@ export default function CareerPage() {
             </p>
           </div>
           <div className="mt-8 grid gap-6 lg:mt-12 lg:grid-cols-2 xl:grid-cols-3">
-            {careerJobs.map((job) => (
+            {jobs.map((job) => (
               <div
                 key={job.id}
                 className="border-gray-light bg-background flex flex-col items-start gap-4 rounded-xl border p-4 lg:p-6"
@@ -152,7 +152,7 @@ export default function CareerPage() {
                 </div>
 
                 <p className="mb-2">{job.description}</p>
-                <Link href="/job-details" className="btn mt-auto">
+                <Link href={`/jobs/${job.slug}`} className="btn mt-auto">
                   Apply now
                 </Link>
               </div>

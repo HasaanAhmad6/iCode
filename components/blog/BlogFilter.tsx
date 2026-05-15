@@ -41,7 +41,7 @@ export function BlogFilter() {
                 loading="lazy"
                 className="size-full object-cover duration-300 group-hover:scale-105"
               />
-              <Link href="/blog-details" className="absolute inset-0" />
+              <Link href={`/blog/${blog.slug}`} className="absolute inset-0" />
               <Link
                 href="/blog"
                 className="bg-primary-light text-primary ring-primary/20 hover:bg-primary absolute top-4 right-4 shrink-0 rounded p-1 text-xs/5 font-medium ring-1 duration-300 hover:text-white sm:px-2 sm:text-sm/6"
@@ -52,7 +52,7 @@ export function BlogFilter() {
 
             <div className="space-y-4 sm:space-y-5">
               <h3 className="mb-2 line-clamp-2 text-xl font-medium text-black lg:mb-3 lg:text-2xl">
-                <Link href="/blog-details" className="hover:text-primary text-black">
+                <Link href={`/blog/${blog.slug}`} className="hover:text-primary text-black">
                   {blog.title}
                 </Link>
               </h3>
@@ -73,7 +73,7 @@ export function BlogFilter() {
                   </div>
                 </div>
                 <Link
-                  href="/blog-details"
+                  href={`/blog/${blog.slug}`}
                   className="hover:text-primary group/link inline-flex items-center gap-1 text-sm/5 font-medium whitespace-nowrap lg:gap-2 lg:text-base/6"
                 >
                   Read insight

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-title: "Blog | iCode Software House",
+title: "Blog",
 description: "Tech articles, development tips, and digital insights from the iCode Software House team in Gujranwala, Pakistan.",
   path: "/blog",
 });

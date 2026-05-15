@@ -36,3 +36,37 @@ body {
   background-color: var(--color-background);
   color: var(--color-black);
 }
+
+.chatbot-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(18, 21, 30, 0.2);
+  border-radius: 9999px;
+}
+
+.chatbot-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.input-field {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(18, 21, 30, 0.1);
+  background: #fff;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-black);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: rgba(0, 10, 35, 0.28);
+  box-shadow: 0 0 0 4px rgba(255, 48, 48, 0.08);
+}
+
+.input-field::placeholder {
+  color: rgba(18, 21, 30, 0.36);
+}

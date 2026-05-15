@@ -53,7 +53,7 @@ export default function ServicesPage() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="/service-details" className="btn">
+                    <Link href={`/services/${service.slug}`} className="btn">
                       Get a quote
                     </Link>
                   </div>

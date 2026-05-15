@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SITE_URL } from "@/lib/seo";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { ChatbotMount } from "@/components/chatbot/ChatbotMount";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -132,6 +133,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+        <ChatbotMount />
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}

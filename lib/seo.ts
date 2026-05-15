@@ -52,23 +52,3 @@ export function createPageMetadata({ title, description, path }: CreatePageMetad
     },
   };
 }
-
-export const sitemapRoutes = [
-  "/",
-  "/about-us",
-  "/blog",
-  "/blog-details",
-  "/career",
-  "/case-studies",
-  "/contact",
-  "/faq",
-  "/job-details",
-  "/pricing-comparison",
-  "/privacy-policy",
-  "/products",
-  "/projects",
-  "/services-details",
-  "/services",
-  "/team",
-  "/terms",
-];

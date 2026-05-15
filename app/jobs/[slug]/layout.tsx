@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createPageMetadata } from "@/lib/seo";
-import { getCaseStudyBySlug, getCaseStudySlugs } from "@/data/case-studies";
+import { getJobBySlug, getJobSlugs } from "@/data/job-details";
 
 // Pre-declare slugs for static generation
 export function generateStaticParams() {
-  return getCaseStudySlugs().map((slug) => ({ slug }));
+  return getJobSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -14,17 +14,17 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const cs = getCaseStudyBySlug(slug);
-  if (!cs) notFound();
+  const job = getJobBySlug(slug);
+  if (!job) notFound();
 
   return createPageMetadata({
-    title: `${cs.client} Case Study`,
-    description: `How iCode Software House helped ${cs.client} in the ${cs.industry} industry — ${cs.tagline}`,
-    path: `/case-studies/${cs.slug}`,
+    title: `${job.title} - Careers`,
+    description: job.description,
+    path: `/jobs/${job.slug}`,
   });
 }
 
-export default function CaseStudyDetailLayout({
+export default function JobDetailLayout({
   children,
 }: {
   children: React.ReactNode;

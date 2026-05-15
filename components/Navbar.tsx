@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AlignJustify, ChevronDown, Phone } from "lucide-react";
+import { serviceNav } from "@/data/services";
 
 type NavbarProps = {
-  serviceLinks: string[];
+  serviceLinks?: string[]; // Deprecated - kept for backward compatibility
 };
 
 // Internal component that uses theme (only rendered after client mount)
 function NavbarContent({
-  serviceLinks,
   menuOpen,
   setMenuOpen,
   servicesOpen,
@@ -19,7 +19,6 @@ function NavbarContent({
   setCompanyOpen,
   isDesktop,
 }: {
-  serviceLinks: string[];
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   servicesOpen: boolean;
@@ -77,9 +76,9 @@ function NavbarContent({
                       : "static flex w-full flex-col space-y-3 p-3"
                   }
                 >
-                  {serviceLinks.map((item: string) => (
-                    <Link key={item} href="/service-details" className="submenu-nav-link">
-                      {item}
+                  {serviceNav.map((service) => (
+                    <Link key={service.slug} href={`/services/${service.slug}`} className="submenu-nav-link">
+                      {service.title}
                     </Link>
                   ))}
                 </div>
@@ -189,7 +188,6 @@ export function Navbar({ serviceLinks }: NavbarProps) {
 
   return (
     <NavbarContent
-      serviceLinks={serviceLinks}
       menuOpen={menuOpen}
       setMenuOpen={setMenuOpen}
       servicesOpen={servicesOpen}
