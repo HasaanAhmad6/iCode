@@ -8,21 +8,21 @@ export function MessageBubble({ message }: MessageBubbleProps) {
   const isUser = message.role === "user";
 
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
+    <div className={`chatbot-message-row ${isUser ? "chatbot-message-row-user" : "chatbot-message-row-assistant"}`}>
       <div
-        className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-6 shadow-sm ${
+        className={`chatbot-message ${
           isUser
-            ? "bg-secondary text-white"
-            : "border border-black/10 bg-white text-black"
+            ? "chatbot-message-user"
+            : "chatbot-message-assistant"
         }`}
       >
-        <p className="whitespace-pre-wrap">{message.content}</p>
+        <p className="chatbot-message-text">{message.content}</p>
         {message.sources && message.sources.length > 0 && !isUser && (
-          <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-black/60">
+          <div className="chatbot-sources">
             {message.sources.map((source) => (
               <span
                 key={`${source.title}-${source.url ?? "source"}`}
-                className="rounded-full border border-black/10 px-2 py-1"
+                className="chatbot-source"
               >
                 {source.title}
               </span>

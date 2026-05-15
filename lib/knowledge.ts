@@ -25,6 +25,15 @@ export function getWebsiteKnowledgeDocuments(): KnowledgeDocument[] {
         "iCode Software House helps businesses streamline operations, elevate brand presence, and grow with trusted technology and design. The homepage highlights web development, UI/UX design, marketing, product design, brand identity, and app development.",
       summary: "Homepage positioning and core service overview.",
     },
+    {
+      sourceId: "custom-software-erp",
+      sourceType: "service",
+      title: "Custom software and ERP-style systems",
+      url: "/services/automation-integrations",
+      content:
+        "iCode Software House builds custom software solutions, scalable backend systems, APIs, workflow automation, and third-party integrations for businesses. The website does not publish a named ERP case study, but ERP-style business systems can be discussed as custom software, automation, and integration projects through Get a Quote or Book a Free Consultation.",
+      summary: "Custom software, automation, integrations, and ERP-style project guidance.",
+    },
     ...servicesItems.map((service) => ({
       sourceId: `service-${service.slug}`,
       sourceType: "service",

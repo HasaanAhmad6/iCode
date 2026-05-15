@@ -29,12 +29,12 @@ export type KnowledgeChunkRecord = KnowledgeDocument & {
   embedding: number[];
 };
 
-export async function searchKnowledgeChunks(queryEmbedding: number[], limit = 5) {
+export async function searchKnowledgeChunks(queryEmbedding: number[], limit = 5, minSimilarity = 0.55) {
   const supabase = getSupabaseAdminClient() as any;
   const { data, error } = await supabase.rpc("match_knowledge_chunks", {
     query_embedding: queryEmbedding,
     match_count: limit,
-    min_similarity: 0.72,
+    min_similarity: minSimilarity,
   });
 
   if (error) {

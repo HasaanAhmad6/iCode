@@ -152,13 +152,15 @@ export function ChatbotWidget() {
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}
-        className="fixed right-6 bottom-6 z-[71] flex items-center gap-2 rounded-full bg-secondary px-4 py-3 text-sm font-semibold text-white shadow-[0_20px_45px_rgba(0,10,35,0.35)] transition hover:-translate-y-0.5"
+        className="chatbot-toggle"
+        aria-label={open ? "Close iCode chat" : "Open iCode chat"}
+        aria-expanded={open}
       >
-        <span className="grid size-9 place-content-center rounded-full bg-white/10">
-          <MessageCircle className="size-4" />
+        <span className="chatbot-toggle-icon">
+          <MessageCircle aria-hidden="true" />
         </span>
-        <span className="hidden sm:inline">Chat with iCode</span>
-        <Sparkles className="size-4 text-[var(--color-primary)]" />
+        <span className="chatbot-toggle-label">Chat with iCode</span>
+        <Sparkles className="chatbot-toggle-spark" aria-hidden="true" />
       </button>
 
       <ChatWindow

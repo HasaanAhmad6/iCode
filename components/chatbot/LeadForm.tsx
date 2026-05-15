@@ -111,22 +111,22 @@ export function LeadForm({ sourcePage, intent, onCancel, onSubmit }: LeadFormPro
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-black/10 bg-[#FAFAFA] p-4">
-      <div className="flex items-start justify-between gap-4">
+    <form onSubmit={handleSubmit} className="chatbot-lead-form">
+      <div className="chatbot-lead-header">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/40">Lead capture</p>
-          <h3 className="mt-1 text-lg">{headline}</h3>
+          <p className="chatbot-lead-kicker">Lead capture</p>
+          <h3 className="chatbot-lead-title">{headline}</h3>
         </div>
-        <button type="button" onClick={onCancel} className="text-sm text-black/50 transition hover:text-black">
+        <button type="button" onClick={onCancel} className="chatbot-link-button">
           Cancel
         </button>
       </div>
 
-      <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/35">
+      <div className="chatbot-steps">
         {[1, 2, 3].map((item) => (
           <span
             key={item}
-            className={`rounded-full px-2 py-1 ${step >= item ? "bg-secondary text-white" : "bg-black/5 text-black/40"}`}
+            className={`chatbot-step ${step >= item ? "chatbot-step-active" : ""}`}
           >
             Step {item}
           </span>
@@ -134,7 +134,7 @@ export function LeadForm({ sourcePage, intent, onCancel, onSubmit }: LeadFormPro
       </div>
 
       {step === 1 && (
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="chatbot-field-grid">
           <Field label="Name">
             <input
               value={formState.name}
@@ -154,7 +154,7 @@ export function LeadForm({ sourcePage, intent, onCancel, onSubmit }: LeadFormPro
               required
             />
           </Field>
-          <Field label="Phone / WhatsApp" className="sm:col-span-2">
+          <Field label="Phone / WhatsApp" className="chatbot-field-full">
             <input
               value={formState.phone}
               onChange={(event) => updateField("phone", event.target.value)}
@@ -167,7 +167,7 @@ export function LeadForm({ sourcePage, intent, onCancel, onSubmit }: LeadFormPro
       )}
 
       {step === 2 && (
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="chatbot-field-grid">
           <Field label="Company name">
             <input
               value={formState.companyName}
@@ -226,12 +226,12 @@ export function LeadForm({ sourcePage, intent, onCancel, onSubmit }: LeadFormPro
       )}
 
       {step === 3 && (
-        <div className="space-y-3">
+        <div className="chatbot-field-stack">
           <Field label="Project details">
             <textarea
               value={formState.projectDetails}
               onChange={(event) => updateField("projectDetails", event.target.value)}
-              className="input-field min-h-28 resize-y"
+              className="input-field chatbot-textarea"
               placeholder="Describe your project, goals, timeline, and any special requirements."
               required
             />
@@ -242,7 +242,7 @@ export function LeadForm({ sourcePage, intent, onCancel, onSubmit }: LeadFormPro
           <input
             value={formState.honeypot}
             onChange={(event) => updateField("honeypot", event.target.value)}
-            className="hidden"
+            className="chatbot-hidden"
             tabIndex={-1}
             autoComplete="off"
             aria-hidden="true"
@@ -250,23 +250,23 @@ export function LeadForm({ sourcePage, intent, onCancel, onSubmit }: LeadFormPro
         </div>
       )}
 
-      {error && <p className="rounded-2xl bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+      {error && <p className="chatbot-error">{error}</p>}
 
-      <div className="flex items-center justify-between gap-3">
+      <div className="chatbot-lead-actions">
         <button
           type="button"
           onClick={() => setStep((current) => Math.max(current - 1, 1))}
           disabled={step === 1 || isSubmitting}
-          className="rounded-full border border-black/10 px-4 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-40"
+          className="chatbot-secondary-button"
         >
           Back
         </button>
         {step < 3 ? (
-          <button type="button" onClick={goNext} className="btn px-4 py-2 text-sm">
+          <button type="button" onClick={goNext} className="chatbot-primary-button">
             Next
           </button>
         ) : (
-          <button type="submit" disabled={isSubmitting} className="btn px-4 py-2 text-sm">
+          <button type="submit" disabled={isSubmitting} className="chatbot-primary-button">
             {isSubmitting ? "Submitting..." : "Send request"}
           </button>
         )}
@@ -277,8 +277,8 @@ export function LeadForm({ sourcePage, intent, onCancel, onSubmit }: LeadFormPro
 
 function Field({ label, className, children }: { label: string; className?: string; children: React.ReactNode }) {
   return (
-    <label className={`space-y-1.5 ${className ?? ""}`}>
-      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-black/45">{label}</span>
+    <label className={`chatbot-field ${className ?? ""}`}>
+      <span className="chatbot-field-label">{label}</span>
       {children}
     </label>
   );
